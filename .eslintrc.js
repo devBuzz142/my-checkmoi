@@ -16,6 +16,7 @@ export default {
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended',
+		'prettier' // eslitn의 style forammting에 있어서 prettier의 rlue로 우선하도록 eslint-config-prettier를 사용한다.
 	],
 	rules: {},
 	parser: '@typescript-eslint/parser',
