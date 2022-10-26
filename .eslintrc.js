@@ -19,7 +19,7 @@ module.exports = {
     'eslint:recommended', // eslint 기본 설정
     'plugin:react/recommended', // eslint 기본 설정
     'plugin:react-hooks/recommended',
-    'plugini:jsx-a11y/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended', // eslint 기본 설정
