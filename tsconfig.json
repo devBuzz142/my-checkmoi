@@ -16,7 +16,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": true, // 프로젝트의 모든 소스코드파일은 모듈화되어야 한다. import/export를 통해 모듈화되어야 한다.
     "noEmit": true,
     "jsx": "react-jsx"
   },

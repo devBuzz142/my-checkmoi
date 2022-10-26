@@ -26,7 +26,9 @@ module.exports = {
     'plugin:storybook/recommended',
     'prettier', // eslitn의 style forammting에 있어서 prettier의 rlue로 우선하도록 eslint-config-prettier를 사용한다.
   ],
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-empty-interface': 'warn',
+  },
   // ESLint는 기본적으로 순수한 자바스크립트 코드만 이해(분석)할 수 있다.
   // 확장문법(ts), 최신문법으로 작성한 코드를 린트하기 위해서는 상응하는 parser가 필요하다.
   // 타입스크립트와 jsx를 사용하여 작성된 코드를 lint할 경우 아래와 같은 parser 가 필요하다.
