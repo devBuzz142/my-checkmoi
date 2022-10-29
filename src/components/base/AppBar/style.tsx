@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 interface ContainerProps {
   color: string;
   position: string;
+  onTop: boolean;
 }
 
 // TODO : to be removed
@@ -25,7 +26,7 @@ export const Container = styled.header<ContainerProps>`
   width: 100%;
 
   position: ${(props) => props.position || 'fixed'};
-  top: 0;
+  top: ${(props) => props.onTop && '0px'}
   right: 0;
   left: 0;
 
