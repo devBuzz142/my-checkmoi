@@ -19,15 +19,11 @@ import * as S from './style';
 
 interface AppBarProps {
   children?: ReactNode;
-  color: 'inherit' | 'primary' | 'secondary' | 'transparent';
+  color: 'inherit' | 'primary' | 'secondary';
   position: 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky';
 }
 
-const AppBar = ({
-  children,
-  color = 'inherit',
-  position = 'fixed',
-}: AppBarProps) => {
+const AppBar = ({ children, color, position = 'fixed' }: AppBarProps) => {
   return (
     <S.Container color={color} position={position}>
       {children}
