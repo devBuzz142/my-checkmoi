@@ -16,22 +16,40 @@ export const Title = styled.h2`
 `;
 
 export const SearchInputContainer = styled.div`
+  border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.2);
-
-  border: 1px solid black;
-  border-radius: 5px;
-
-  font-size: 16px;
-
-  width: 256px;
 
   margin-left: auto;
   margin-right: auto;
 
+  height: 32px;
+
+  padding-left: 2px;
+  padding-right: 2px;
+
   display: flex;
+  align-items: center;
+
+  font-size: 16px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
 `;
 
-export const TempButtonContainer = styled.div``;
+export const Input = styled.input`
+  all: unset;
+
+  margin-left: 2px;
+  margin-right: 2px;
+
+  width: 256px;
+
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  &:focus {
+    width: 512px;
+  }
+`;
 
 export const Button = styled.button`
   all: unset;

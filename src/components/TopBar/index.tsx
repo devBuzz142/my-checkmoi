@@ -2,6 +2,7 @@ import React, { FormEvent, MouseEvent, useRef } from 'react';
 import * as S from './style';
 import { AppBar, Toolbar } from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
+import SearchIcon from '@mui/icons-material/Search';
 
 interface TopBarProps {}
 
@@ -37,9 +38,9 @@ const TopBar = ({ ...props }: TopBarProps) => {
           <S.Title>책모이</S.Title>
         </S.TitleWrapper>
         <S.SearchInputContainer>
-          <div>searchIcon</div>
+          <SearchIcon sx={{ fontSize: 20 }} />
           <form onSubmit={handleSearchInputSumbit}>
-            <input type="text" ref={serarchInputRef} />
+            <S.Input type="text" ref={serarchInputRef} />
           </form>
         </S.SearchInputContainer>
         <S.Button type="button">LogIn</S.Button>
