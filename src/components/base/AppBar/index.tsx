@@ -21,17 +21,22 @@ interface AppBarProps {
   children?: ReactNode;
   color: 'inherit' | 'primary' | 'secondary';
   position: 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky';
-  onTop?: boolean;
+  isTop?: boolean;
 }
 
 const AppBar = ({
   children,
   color,
   position = 'fixed',
-  onTop = true,
+  isTop = true,
 }: AppBarProps) => {
   return (
-    <S.Container color={color} position={position} onTop={onTop}>
+    <S.Container
+      className="AppBar"
+      color={color}
+      position={position}
+      isTop={isTop}
+    >
       {children}
     </S.Container>
   );

@@ -6,7 +6,7 @@ interface ToolbarProps {
 }
 
 const Toolbar = ({ children }: ToolbarProps) => {
-  return <S.Container>{children}</S.Container>;
+  return <S.Container className="Toolbar">{children}</S.Container>;
 };
 
 export default Toolbar;
