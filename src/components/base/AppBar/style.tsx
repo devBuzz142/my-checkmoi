@@ -26,7 +26,7 @@ export const Container = styled.header<ContainerProps>`
   width: 100%;
 
   position: ${(props) => props.position || 'fixed'};
-  top: ${(props) => props.onTop && '0px'}
+  top: ${(props) => props.onTop && '0px'};
   right: 0;
   left: 0;
 
