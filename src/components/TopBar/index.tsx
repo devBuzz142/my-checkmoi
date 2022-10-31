@@ -14,6 +14,12 @@ const TopBar = ({ ...props }: TopBarProps) => {
 
   const handleSearchInputSumbit = (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
+
+    //TODO - 검색 로직 구현 예정
+  };
+
+  const handleLoginClick = (e: MouseEvent<HTMLButtonElement>) => {
+    //TODO - 로그인 구현 예정
   };
 
   return (
@@ -36,9 +42,7 @@ const TopBar = ({ ...props }: TopBarProps) => {
             <input type="text" ref={serarchInputRef} />
           </form>
         </S.SearchInputContainer>
-        <S.TempButtonContainer>
-          <button type="button">LogIn</button>
-        </S.TempButtonContainer>
+        <S.Button type="button">LogIn</S.Button>
       </Toolbar>
     </AppBar>
   );
