@@ -55,7 +55,7 @@ export const Button = styled.button`
   all: unset;
 
   border-radius: 4px;
-  background-color: #0d47a1;
+  background-color: ${({ theme }) => theme.color.primary}
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 

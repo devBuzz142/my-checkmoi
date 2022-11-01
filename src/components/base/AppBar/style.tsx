@@ -6,18 +6,6 @@ interface ContainerProps {
   isTop: boolean;
 }
 
-// TODO : to be removed
-const getByColorPalette = (color: string) => {
-  switch (color) {
-    case 'primary':
-      return '#42a5f5';
-    case 'secondary':
-      return '#ba68c8';
-    default:
-      return 'inherit';
-  }
-};
-
 export const Container = styled.header<ContainerProps>`
   display: flex;
   flex-direction: column;
@@ -32,6 +20,15 @@ export const Container = styled.header<ContainerProps>`
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 
-  background-color: ${(props) => getByColorPalette(props.color)};
   color: white;
+  background-color: ${({ color, theme }) => {
+    switch (color) {
+      case 'primary':
+        return theme.color.primary;
+      case 'secondary':
+        return theme.color.secondary;
+      default:
+        return 'inherit';
+    }
+  }};
 `;
