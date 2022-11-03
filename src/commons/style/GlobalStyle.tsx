@@ -52,10 +52,19 @@ const GlobalStyle = () => {
           -moz-appearance: none;
           appearance: none;
 
-          background: none;
           border: 0;
+          background: none;
 
           cursor: pointer;
+        }
+
+        input {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+
+          border: 0;
+          background: none;
         }
 
         a {

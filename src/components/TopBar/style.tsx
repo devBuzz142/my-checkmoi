@@ -38,8 +38,6 @@ export const SearchInputContainer = styled.div`
 `;
 
 export const Input = styled.input`
-  all: unset;
-
   margin-left: 2px;
   margin-right: 2px;
 
@@ -52,10 +50,8 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  all: unset;
-
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.color.primary}
+  background-color: ${({ theme }) => theme.color.primary.light};
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 

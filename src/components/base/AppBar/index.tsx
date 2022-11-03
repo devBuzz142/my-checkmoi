@@ -27,7 +27,7 @@ interface AppBarProps {
 const AppBar = ({
   children,
   color,
-  position = 'fixed',
+  position = 'static',
   isTop = true,
 }: AppBarProps) => {
   return (

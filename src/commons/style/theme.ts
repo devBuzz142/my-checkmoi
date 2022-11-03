@@ -1,8 +1,16 @@
 //TODO - temp theme
 const theme = {
   color: {
-    primary: '#0d47a1',
-    secondary: '#ba68c8',
+    primary: {
+      main: '#42a5f5',
+      dark: '#0d47a1',
+      light: '#90caf9',
+    },
+    secondary: {
+      main: '#ab47bc',
+      dark: '#7b1fa2',
+      light: '#ce93d8',
+    },
   },
 };
 
