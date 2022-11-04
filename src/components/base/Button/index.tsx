@@ -5,10 +5,13 @@ interface ButtonProps {
   children?: ReactNode;
   variant: 'text' | 'outlined' | 'contained';
   disabled: boolean;
-  color?: string;
+  color: string;
   href: string;
-  rowPos?: string;
-  colPos?: string;
+  justifyContent: 'start' | 'center' | 'end';
+  alignItems: 'start' | 'center' | 'end';
+  width: 'auto' | number;
+  height: 'auto' | number;
+  disableElevation: boolean;
 }
 
 const Button = ({
@@ -17,16 +20,24 @@ const Button = ({
   disabled = false,
   color = 'primary',
   href = '',
-  rowPos = 'center',
-  colPos = 'center',
+  justifyContent = 'center',
+  alignItems = 'center',
+  width = 'auto',
+  height = 'auto',
+  disableElevation = false,
+  ...props
 }: ButtonProps) => {
   return (
     <S.Button
       variant={variant}
       color={color}
       disabled={disabled}
-      rowPos={rowPos}
-      colPos={colPos}
+      justifyContent={justifyContent}
+      alignItems={alignItems}
+      width={width}
+      height={height}
+      disableElevation={disableElevation}
+      {...props}
     >
       {children}
     </S.Button>
