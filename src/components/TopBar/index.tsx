@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent, useRef } from 'react';
 import * as S from './style';
-import { AppBar, Toolbar } from '../index';
+import { AppBar, Toolbar, Button } from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -43,7 +43,9 @@ const TopBar = ({ ...props }: TopBarProps) => {
             <S.Input type="text" ref={serarchInputRef} />
           </form>
         </S.SearchInputContainer>
-        <S.Button type="button">LogIn</S.Button>
+        <Button variant="contained" color="primary">
+          Login
+        </Button>
       </Toolbar>
     </AppBar>
   );

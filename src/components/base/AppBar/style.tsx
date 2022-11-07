@@ -24,7 +24,7 @@ export const Container = styled.header<ContainerProps>`
   background-color: ${({ color, theme }) => {
     switch (color) {
       case 'primary':
-        return theme.color.primary.main;
+        return theme.color.primary.light;
       case 'secondary':
         return theme.color.secondary.main;
       default:
