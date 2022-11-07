@@ -1,27 +1,31 @@
+import * as colors from '@mui/material/colors';
+
+// color pallette : https://mui.com/material-ui/customization/color/
+
 //TODO - temp theme
 const theme = {
   color: {
+    palette: { ...colors, black: '#000000', white: '#ffffff' },
     primary: {
-      main: '#42a5f5',
-      mainDarker: '#2196f3',
-      dark: '#0d47a1',
-      light: '#90caf9',
-      lightest: '#e3f2fd',
+      lightest: colors.blue[50],
+      light: colors.blue[200],
+      main: colors.blue[500],
+      dark: colors.blue[700],
+      darkest: colors.blue[900],
+      ...colors.blue,
     },
     secondary: {
-      main: '#ab47bc',
-      mainDarker: '#9c27b0',
-      dark: '#7b1fa2',
-      light: '#ce93d8',
-      lightest: '#f3e5f5',
+      lightest: colors.purple[50],
+      light: colors.purple[200],
+      main: colors.purple[500],
+      dark: colors.purple[700],
+      darkest: colors.purple[900],
+      ...colors.purple,
     },
     disabled: {
-      text: 'rgba(0, 0, 0, 0.4)',
-      background: 'rgba(0, 0, 0, 0.15)',
-      border: 'rgba(0, 0, 0, 0.15)',
-    },
-    white: {
-      main: 'rgba(255, 255, 255, 1)',
+      text: colors.grey[700],
+      background: colors.grey[400],
+      border: colors.grey[400],
     },
   },
 };
