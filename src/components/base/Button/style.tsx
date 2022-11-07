@@ -1,86 +1,98 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { color } from '@mui/system';
-import { ProgressPlugin } from 'webpack';
 
 interface ButtonProps {
   variant: string;
   color: string;
-  justifyContent: string;
-  alignItems: string;
-  width: 'auto' | number;
-  height: 'auto' | number;
   disableElevation: boolean;
+  disabled: boolean;
+  sx: {
+    flexDirection: string;
+    justifyContent: string;
+    alignItems: string;
+    width: 'auto' | number;
+    height: 'auto' | number;
+  };
 }
 
-const getTextButtonStyle = (color: string, varaint: string) => css`
+const getSxWidth = (width: 'auto' | number) => {
+  if (width === 'auto') return 'auto';
+
+  return width <= 1 && width !== 0 ? `${width * 100}%` : `${width}px`;
+};
+
+const getSxHeight = (height: 'auto' | number) => {
+  if (height === 'auto') return 'auto';
+
+  return height <= 1 && height !== 0 ? `${height * 100}%` : `${height}px`;
+};
+
+const getTextButtonStyle = ({ ...props }) => css`
   border: none;
-  background-color: white;
-  color: ${color};
+  background-color: ${props.theme.color.white.main};
+  color: ${props.disabled
+    ? props.theme.color.disabled.text
+    : props.theme.color[props.color].main};
+
+  :hover {
+    background-color: ${props.theme.color[props.color].lightest};
+  }
 `;
 
-const getContainedButtonStyle = (color: string, varaint: string) => css`
-  background-color: ${color};
-  color: white;
-`;
-
-const getOutlinedButtonStyle = (color: string, variant: string) => css`
+const getOutlinedButtonStyle = ({ ...props }) => css`
   border: 1px solid;
-  border-color: ${color};
-  background-color: white;
-  color: ${color};
+  border-color: ${props.disabled ? 'rgba(0, 0, 0, 0.4)' : props.color};
+  background-color: ${props.theme.color.white.main};
+  color: ${props.disabled
+    ? props.theme.color.disabled.text
+    : props.theme.color[props.color].main};
+
+  :hover {
+    background-color: ${props.theme.color[props.color].lightest};
+  }
+`;
+
+const getContainedButtonStyle = ({ ...props }) => css`
+  background-color: ${props.disabled
+    ? props.theme.color.disabled.background
+    : props.theme.color[props.color].main};
+  color: ${props.disabled
+    ? props.theme.color.disabled.text
+    : props.theme.color.white.main};
+
+  :hover {
+    background-color: ${props.theme.color[props.color].mainDarker};
+  }
 `;
 
 export const Button = styled.button<ButtonProps>`
-  width: ${({ width }) => {
-    if (width === 'auto') return 'auto';
-
-    return width <= 1 && width !== 0 ? `${width * 100}%` : `${width}px`;
-  }};
-  height: ${({ height }) => {
-    if (height === 'auto') return 'auto';
-
-    return height <= 1 && height !== 0 ? `${height * 100}%` : `${height}px`;
-  }};
+  width: ${({ sx }) => getSxWidth(sx.width)};
+  height: ${({ sx }) => getSxHeight(sx.height)};
 
   border-radius: 4px;
 
+  box-shadow: ${({ disableElevation }) =>
+    !disableElevation && '0px 4px 4px rgba(0, 0, 0, 0.2)'};
+
   padding: 4px 8px;
 
-  box-shadow: ${({ disableElevation }) =>
-    disableElevation ? '' : '0px 4px 4px rgba(0, 0, 0, 0.2)'};
-
-  ${({ color, variant, theme }) => {
-    switch (variant) {
+  ${(props) => {
+    switch (props.variant) {
       case 'text':
-        return getTextButtonStyle(theme.color.primary.main, variant);
+        return getTextButtonStyle({ ...props });
       case 'contained':
-        return getContainedButtonStyle(theme.color.primary.main, variant);
+        return getContainedButtonStyle({ ...props });
       case 'outlined':
-        return getOutlinedButtonStyle(theme.color.primary.main, variant);
+        return getOutlinedButtonStyle({ ...props });
     }
   }};
 
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      border-color: rgba(0, 0, 0, 0.15);
-      background-color: rgba(0, 0, 0, 0.15);
-
-      color: rgba(0, 0, 0, 0.4);
-    `};
-
   display: flex;
-  justify-content: ${({ justifyContent }) => justifyContent};
-  align-items: ${({ alignItems }) => alignItems};
+  flex-direction: ${({ sx }) => sx.flexDirection};
+  justify-content: ${({ sx }) => sx.justifyContent};
+  align-items: ${({ sx }) => sx.alignItems};
 
   font-weight: 700;
   letter-spacing: 0.02857em;
-
-  :hover {
-    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.05),
-      ${({ disableElevation }) =>
-        disableElevation ? '' : '0px 4px 4px rgba(0, 0, 0, 0.2)'};
-  }
 `;
 //TODO - letter-spacing enum화 할 것
