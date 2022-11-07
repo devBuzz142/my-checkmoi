@@ -56,6 +56,10 @@ const GlobalStyle = () => {
           background: none;
 
           cursor: pointer;
+
+          :disabled {
+            cursor: not-allowed;
+          }
         }
 
         input {

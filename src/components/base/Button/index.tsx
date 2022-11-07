@@ -3,12 +3,12 @@ import * as S from './style';
 
 export interface ButtonProps {
   children?: ReactNode;
-  variant: 'text' | 'outlined' | 'contained';
-  disabled: boolean;
-  color: 'primary' | 'secondary' | string;
-  href: string;
-  disableElevation: boolean;
-  sx: {
+  variant?: 'text' | 'outlined' | 'contained';
+  disabled?: boolean;
+  color?: 'primary' | 'secondary' | string;
+  href?: string;
+  disableElevation?: boolean;
+  sx?: {
     flexDirection: 'row' | 'column';
     justifyContent: 'start' | 'center' | 'end';
     alignItems: 'start' | 'center' | 'end';

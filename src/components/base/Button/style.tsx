@@ -29,26 +29,32 @@ const getSxHeight = (height: 'auto' | number) => {
 
 const getTextButtonStyle = ({ ...props }) => css`
   border: none;
-  background-color: ${props.theme.color.white.main};
+  background-color: ${props.theme.color.palette.whte};
   color: ${props.disabled
     ? props.theme.color.disabled.text
     : props.theme.color[props.color].main};
 
   :hover {
-    background-color: ${props.theme.color[props.color].lightest};
+    ${!props.disabled &&
+    css`
+      background-color: ${props.theme.color[props.color].lightest};
+    `}
   }
 `;
 
 const getOutlinedButtonStyle = ({ ...props }) => css`
   border: 1px solid;
   border-color: ${props.disabled ? 'rgba(0, 0, 0, 0.4)' : props.color};
-  background-color: ${props.theme.color.white.main};
+  background-color: ${props.theme.color.palette.white};
   color: ${props.disabled
     ? props.theme.color.disabled.text
     : props.theme.color[props.color].main};
 
   :hover {
-    background-color: ${props.theme.color[props.color].lightest};
+    ${!props.disabled &&
+    css`
+      background-color: ${props.theme.color[props.color].lightest};
+    `}
   }
 `;
 
@@ -58,10 +64,13 @@ const getContainedButtonStyle = ({ ...props }) => css`
     : props.theme.color[props.color].main};
   color: ${props.disabled
     ? props.theme.color.disabled.text
-    : props.theme.color.white.main};
+    : props.theme.color.palette.white};
 
   :hover {
-    background-color: ${props.theme.color[props.color].mainDarker};
+    ${!props.disabled &&
+    css`
+      background-color: ${props.theme.color[props.color][700]};
+    `}
   }
 `;
 
@@ -71,8 +80,8 @@ export const Button = styled.button<ButtonProps>`
 
   border-radius: 4px;
 
-  box-shadow: ${({ disableElevation }) =>
-    !disableElevation && '0px 4px 4px rgba(0, 0, 0, 0.2)'};
+  box-shadow: ${({ disableElevation, theme }) =>
+    !disableElevation && `0px 4px 4px ${theme.color.palette.grey[500]}`};
 
   padding: 4px 8px;
 
