@@ -57,7 +57,7 @@ const GlobalStyle = () => {
 
           cursor: pointer;
 
-          :disabled {
+          &:disabled {
             cursor: not-allowed;
           }
         }
@@ -69,6 +69,10 @@ const GlobalStyle = () => {
 
           border: 0;
           background: none;
+
+          &:focus {
+            outline: none;
+          }
         }
 
         a {
