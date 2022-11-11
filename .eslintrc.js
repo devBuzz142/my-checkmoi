@@ -28,6 +28,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-empty-interface': 'warn',
+    'jsx-a11y/no-autofocus': 'warn',
   },
   // ESLint는 기본적으로 순수한 자바스크립트 코드만 이해(분석)할 수 있다.
   // 확장문법(ts), 최신문법으로 작성한 코드를 린트하기 위해서는 상응하는 parser가 필요하다.

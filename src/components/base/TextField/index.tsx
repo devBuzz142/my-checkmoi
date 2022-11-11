@@ -48,7 +48,7 @@ const TextField = ({
   name,
   inputRef,
   margin,
-  multiline = false,
+  multiline = true,
   rows,
   maxRows,
   minRows,
@@ -63,7 +63,22 @@ const TextField = ({
     <S.Container>
       {label && <S.Label>{label}</S.Label>}
       <S.InputWrapper>
-        <InputBase placeholder={placeholder} />
+        <InputBase
+          id={id}
+          name={name}
+          value={value}
+          defaultValue={defaultValue}
+          autoComplete={autoComplete}
+          autoFocus={autoFocus}
+          multiline
+          rows={rows}
+          maxRows={maxRows}
+          minRows={minRows}
+          placeholder={placeholder}
+          disabled={disabled}
+          readonly={readonly}
+          required={required}
+        />
       </S.InputWrapper>
     </S.Container>
   );

@@ -70,6 +70,24 @@ const GlobalStyle = () => {
           border: 0;
           background: none;
 
+          resize: none;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        textarea {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+
+          border: 0;
+          background: none;
+
+          resize: none;
+          overflow: visible;
+
           &:focus {
             outline: none;
           }
