@@ -1,100 +1,76 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { autocompleteClasses } from '@mui/material';
-import React, { HTMLInputTypeAttribute } from 'react';
+import React, { HTMLInputTypeAttribute, useRef } from 'react';
+import * as S from './style';
 
 interface InputBaseProps {
-  autoComplete?: boolean;
-  autoFocus?: boolean;
-  color?: string;
-  defaultValue?: any;
-  disabled?: boolean;
-  disableUnderline?: boolean;
-  error?: boolean;
-  fullWidth?: boolean;
+  type?: HTMLInputTypeAttribute;
   id?: string;
   name?: string;
-  inputRef?: React.Ref<HTMLInputElement>;
-  multiline?: boolean;
-  rows?: number;
-  maxRows?: number;
-  minRows?: number;
-  label?: string;
-  placeholder?: string;
+  defaultValue?: any;
+  value?: any;
+  disabled?: boolean;
   readonly?: boolean;
   required?: boolean;
-  type?: HTMLInputTypeAttribute;
-  value?: any;
-  // onChange?: ChangeEventHandler;
+  placeholder?: string;
+  inputRef?: React.RefObject<HTMLInputElement> | null;
+  autoComplete?: boolean;
+  autoFocus?: boolean;
+  fullWidth?: boolean;
+  error?: boolean;
   sx?: {
     backgroundColor?: string;
     color?: string;
   };
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  // inputRef?: React.RefObject<HTMLInputElement> | null;
+  // multiline?: boolean;
+  // rows?: number;
+  // maxRows?: number;
+  // minRows?: number;
 }
 
 const InputBase = ({
-  autoComplete = false,
-  autoFocus = false,
-  color = 'primary',
-  defaultValue,
-  disabled = false,
-  disableUnderline = false,
-  error = false,
-  fullWidth = false,
+  type,
   id,
   name,
-  inputRef,
-  multiline = false,
-  rows,
-  maxRows,
-  minRows,
-  label,
-  placeholder,
+  defaultValue,
+  value,
+  disabled = false,
   readonly = false,
   required = false,
-  type,
-  value,
+  inputRef = null,
+  autoComplete = false,
+  autoFocus = false,
+  fullWidth = false,
+  placeholder,
+  error = false,
+  // multiline,
+  // rows,
+  // maxRows,
+  // minRows,
   sx = {
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    color: 'rgba(0, 0, 0, 1)',
+    color: 'rgba(0,0,0,1)',
   },
+  onChange,
 }: InputBaseProps) => {
-  const inputStyle = css`
-    margin-top: 16px;
-
-    width: 100%;
-    min-height: 32px;
-
-    background-color: ${sx.backgroundColor};
-    color: ${sx.color};
-
-    font-size: 16px;
-  `;
-
-  const StyledInput = styled.input`
-    ${inputStyle};
-  `;
-
-  const StyledTextArea = styled.textarea`
-    ${inputStyle};
-  `;
-
-  const StyledInputBase = multiline ? StyledTextArea : StyledInput;
-
   return (
-    <StyledInputBase
-      autoComplete={autoComplete ? 'on' : 'off'}
-      autoFocus={autoFocus}
-      defaultValue={defaultValue}
-      disabled={disabled}
+    <S.StyledInputBase
+      type={type}
       id={id}
       name={name}
-      // ref={inputRef}
-      placeholder={placeholder}
+      defaultValue={defaultValue}
+      value={value}
+      disabled={disabled}
       readOnly={readonly}
       required={required}
-      type={type}
-      value={value}
+      placeholder={placeholder}
+      ref={inputRef}
+      autoComplete={autoComplete ? 'on' : 'off'}
+      autoFocus={autoFocus}
+      fullWidth={fullWidth}
+      error={error}
+      sx={sx}
+      onChange={onChange}
     />
   );
 };
