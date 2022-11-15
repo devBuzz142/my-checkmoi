@@ -1,13 +1,13 @@
 import React, { FormEvent, MouseEvent, useRef } from 'react';
 import * as S from './style';
-import { AppBar, Toolbar, Button } from '../index';
+import { AppBar, Toolbar, Button, InputBase } from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface TopBarProps {}
 
 const TopBar = ({ ...props }: TopBarProps) => {
-  const serarchInputRef = useRef<null | HTMLInputElement>(null);
+  const serarchInputRef = useRef<HTMLInputElement>(null);
 
   const handleLogoTitleClick = (e: MouseEvent<HTMLDivElement>) => {
     //TODO - 라우팅 구현 예정
@@ -39,9 +39,9 @@ const TopBar = ({ ...props }: TopBarProps) => {
         </S.TitleWrapper>
         <S.SearchInputContainer>
           <SearchIcon sx={{ fontSize: 20 }} />
-          <form onSubmit={handleSearchInputSumbit}>
-            <S.Input type="text" ref={serarchInputRef} />
-          </form>
+          <S.Form onSubmit={handleSearchInputSumbit}>
+            <InputBase type={'text'} inputRef={serarchInputRef} fullWidth />
+          </S.Form>
         </S.SearchInputContainer>
         <Button variant="contained" color="primary">
           Login

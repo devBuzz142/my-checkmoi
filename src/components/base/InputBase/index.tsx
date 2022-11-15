@@ -48,7 +48,7 @@ const InputBase = ({
   // maxRows,
   // minRows,
   sx = {
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: 'rgba(0,0,0,0)',
     color: 'rgba(0,0,0,1)',
   },
   onChange,

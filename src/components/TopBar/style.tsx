@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { InputBase } from '../index';
 
 export const LogoWrapper = styled.div`
   cursor: pointer;
@@ -37,14 +38,14 @@ export const SearchInputContainer = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const Form = styled.form`
   margin-left: 2px;
   margin-right: 2px;
 
   width: 256px;
 
   transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  &:focus {
+  &:focus-within {
     width: 512px;
   }
 `;

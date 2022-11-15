@@ -10,8 +10,6 @@ interface StyledInputBaseProps {
 }
 
 export const StyledInputBase = styled.input<StyledInputBaseProps>`
-  margin-top: 16px;
-
   width: ${(props) => props.fullWidth && '100%'};
   min-height: 32px;
 
