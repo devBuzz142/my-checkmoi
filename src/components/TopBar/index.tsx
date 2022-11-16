@@ -3,20 +3,24 @@ import * as S from './style';
 import { AppBar, Toolbar, Button, InputBase } from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 interface TopBarProps {}
 
 const TopBar = ({ ...props }: TopBarProps) => {
   const serarchInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleLogoTitleClick = (e: MouseEvent<HTMLDivElement>) => {
-    //TODO - 라우팅 구현 예정
+    navigate('/');
   };
 
-  const handleSearchInputSumbit = (e: FormEvent<HTMLElement>) => {
+  const handleSearchInputSumbit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    //TODO - 검색 로직 구현 예정
+    //TODO - pattern 검사 필요
+
+    navigate(`/search?word=${serarchInputRef.current?.value}&page=1`);
   };
 
   const handleLoginClick = (e: MouseEvent<HTMLButtonElement>) => {
