@@ -38,6 +38,10 @@ const GlobalStyle = () => {
           height: 100%;
         }
 
+        #root {
+          height: 100%;
+        }
+
         img,
         picture,
         video,

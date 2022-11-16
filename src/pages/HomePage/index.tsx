@@ -1,9 +1,11 @@
 import React from 'react';
+import { TopBar } from '../../components';
+import PageTemplate from '../PageTemplate';
 
 interface HomePageProps {}
 
 const HomePage = ({ ...props }: HomePageProps) => {
-  return <div>This is HomePage</div>;
+  return <PageTemplate pageName="HomePage"></PageTemplate>;
 };
 
 export default HomePage;
