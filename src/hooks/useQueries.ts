@@ -2,8 +2,10 @@ import { useLocation } from 'react-router-dom';
 
 const useQueries = () => {
   const queries: { [x: string]: string } = {};
-  useLocation()
-    .search.slice(1)
+  const loc = useLocation();
+
+  loc.search
+    .slice(1)
     .split('&')
     .forEach((q) => {
       const [key, val] = q.split('=');
@@ -11,7 +13,7 @@ const useQueries = () => {
       queries[key] = val;
     });
 
-  return queries;
+  return { loc, queries };
 };
 
 export default useQueries;
