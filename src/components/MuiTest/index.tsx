@@ -1,10 +1,20 @@
 import React from 'react';
-import { Card } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 
 interface MuiTestProps {}
 
 const MuiTest = ({ ...props }: MuiTestProps) => {
-  return <Card>hello card</Card>;
+  return (
+    <Card>
+      <CardContent>
+        <div>hello</div>
+        <div>hello</div>
+        <div>hello</div>
+        <div>hello</div>
+        <div>hello</div>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default MuiTest;

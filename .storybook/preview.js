@@ -23,7 +23,9 @@ export const decorators = [
 
     if (args.mui) {
       return (
-        <div style={{ border: '1px solid black', margin: '3em' }}>
+        <div
+          style={{ outline: '1px solid black', margin: '3em', padding: '1em' }}
+        >
           <Story {...context} />
         </div>
       );
