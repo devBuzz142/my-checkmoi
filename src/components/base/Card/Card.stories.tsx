@@ -8,7 +8,13 @@ export default {
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = (args) => {
-  return <Card {...args}></Card>;
+  return (
+    <Card {...args}>
+      <div>hello</div>
+      <div>hello</div>
+      <div>hello</div>
+    </Card>
+  );
 };
 
 export const Default = Template.bind({});
