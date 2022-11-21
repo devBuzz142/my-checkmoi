@@ -13,8 +13,6 @@ export const Container = styled.div<ContainerProps>`
 
   padding: ${(props) => props.sx.padding};
 
-  background-color: rgba(255, 255, 255, 1);
-
   overflow-x: hidden;
   overflow-y: hidden;
 

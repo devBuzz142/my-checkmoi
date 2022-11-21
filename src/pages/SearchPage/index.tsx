@@ -3,6 +3,8 @@ import PageTemplate from '../PageTemplate';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useQueries from '../../hooks/useQueries';
 import { getNaverBooks } from '../../naver';
+import * as S from './style';
+import { BookCard } from '../../components';
 
 interface SearchPageProps {}
 
@@ -56,7 +58,11 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
       <div>search word : {queries.word}</div>
       <div>cardList</div>
       {searchedBooks.map((book) => (
-        <div key={book.isbn}>{book.title}</div>
+        <BookCard
+          key={book.isbn}
+          bookImage={book.image}
+          bookTitle={book.title}
+        />
       ))}
       <div>
         <button
