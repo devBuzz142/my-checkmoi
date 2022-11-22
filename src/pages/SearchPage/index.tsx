@@ -66,26 +66,40 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
         ))}
       </S.BookCardContainer>
       <S.PaginationContainer>
-        <button
+        <S.PaginationButton
+          disabled={curPage === 1}
           onClick={() =>
             navigate(
               `/search?word=${queries.word}&page=${Number(queries.page) - 1}`,
             )
           }
         >
-          {'<<<'}
-        </button>
-        pagination curpage={queries.page} / maxPage=
-        {Math.ceil(total.current / DISPLAY_UNIT)}
-        <button
+          {'<'}
+        </S.PaginationButton>
+        {Array.from(
+          Array(Math.ceil(total.current / DISPLAY_UNIT)),
+          (_, i) => i + 1,
+        ).map((pageNum) => (
+          <S.PaginationButton
+            curPage={curPage === pageNum}
+            key={pageNum}
+            onClick={() =>
+              navigate(`/search?word=${queries.word}&page=${pageNum}`)
+            }
+          >
+            {pageNum}
+          </S.PaginationButton>
+        ))}
+        <S.PaginationButton
+          disabled={curPage === Math.ceil(total.current / DISPLAY_UNIT)}
           onClick={() =>
             navigate(
               `/search?word=${queries.word}&page=${Number(queries.page) + 1}`,
             )
           }
         >
-          {'>>>'}
-        </button>
+          {'>'}
+        </S.PaginationButton>
       </S.PaginationContainer>
     </PageTemplate>
   );
