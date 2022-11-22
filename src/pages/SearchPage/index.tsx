@@ -28,7 +28,7 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
   const [curPage, setCurPage] = useState(Number(queries.page));
   const total = useRef<number>(0);
 
-  const DISPLAY_UNIT = 15;
+  const DISPLAY_UNIT = 8;
 
   useEffect(() => {
     if (!queries.page) return;
@@ -51,20 +51,21 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
     };
 
     getBooks();
-  }, [curPage]);
+  }, [queries.word, curPage]);
 
   return (
     <PageTemplate pageName="SearchPage">
-      <div>search word : {queries.word}</div>
-      <div>cardList</div>
-      {searchedBooks.map((book) => (
-        <BookCard
-          key={book.isbn}
-          bookImage={book.image}
-          bookTitle={book.title}
-        />
-      ))}
-      <div>
+      <S.SearchWordWrapper>search word : {queries.word}</S.SearchWordWrapper>
+      <S.BookCardContainer className="BookCardContainer">
+        {searchedBooks.map((book) => (
+          <BookCard
+            key={book.isbn}
+            bookImage={book.image}
+            bookTitle={book.title}
+          />
+        ))}
+      </S.BookCardContainer>
+      <S.PaginationContainer>
         <button
           onClick={() =>
             navigate(
@@ -85,7 +86,7 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
         >
           {'>>>'}
         </button>
-      </div>
+      </S.PaginationContainer>
     </PageTemplate>
   );
 };

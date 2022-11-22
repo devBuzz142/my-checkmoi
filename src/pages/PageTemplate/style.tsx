@@ -5,5 +5,7 @@ export const PageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.main`
-  padding: 64px;
+  padding: 32px 64px;
+
+  height: calc(100% - 64px);
 `;
