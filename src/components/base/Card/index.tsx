@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { MouseEventHandler, ReactNode } from 'react';
 import * as S from './style';
 
 interface CardProps {
@@ -7,15 +7,17 @@ interface CardProps {
   sx?: {
     padding: string;
   };
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 const Card = ({
   children,
   className = 'Card',
   sx = { padding: '16px' },
+  onClick,
 }: CardProps) => {
   return (
-    <S.Container className={className} sx={sx}>
+    <S.Container className={className} sx={sx} onClick={onClick}>
       {children}
     </S.Container>
   );

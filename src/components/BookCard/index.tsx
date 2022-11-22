@@ -1,17 +1,19 @@
-import React, { ReactNode } from 'react';
+import React, { MouseEventHandler, ReactNode } from 'react';
 import * as S from './style';
 
 interface BookCardProps {
   bookTitle: string;
   bookImage: string;
+  onClick?: MouseEventHandler<HTMLElement>;
 }
 
 const BookCard = ({
   bookTitle = 'untitled',
   bookImage = '',
+  onClick,
 }: BookCardProps) => {
   return (
-    <S.Container className="BookCard">
+    <S.Container className="BookCard" onClick={onClick}>
       <S.ImageWrapper>
         <img src={bookImage} alt={bookTitle} />
       </S.ImageWrapper>

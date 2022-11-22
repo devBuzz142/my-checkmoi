@@ -62,6 +62,9 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
             key={book.isbn}
             bookImage={book.image}
             bookTitle={book.title}
+            onClick={() => {
+              navigate(`/book?title=${book.title}`);
+            }}
           />
         ))}
       </S.BookCardContainer>
