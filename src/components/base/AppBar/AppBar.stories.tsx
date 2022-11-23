@@ -2,7 +2,7 @@ import AppBar from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Components/AppBar',
+  title: 'Base/AppBar',
   component: AppBar,
   argTypes: {},
 } as ComponentMeta<typeof AppBar>;

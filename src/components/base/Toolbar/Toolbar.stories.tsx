@@ -2,7 +2,7 @@ import Toolbar from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Components/Toolbar',
+  title: 'Base/Toolbar',
   component: Toolbar,
   argTypes: {},
 } as ComponentMeta<typeof Toolbar>;
