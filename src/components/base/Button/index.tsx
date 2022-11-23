@@ -8,6 +8,7 @@ export interface ButtonProps {
   color?: 'primary' | 'secondary' | string;
   href?: string;
   disableElevation?: boolean;
+  fullWidth?: boolean;
   sx?: {
     flexDirection: 'row' | 'column';
     justifyContent: 'start' | 'center' | 'end';
@@ -24,6 +25,7 @@ const Button = ({
   color = 'primary',
   href = '',
   disableElevation = false,
+  fullWidth = false,
   sx = {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -39,6 +41,7 @@ const Button = ({
       color={color}
       disabled={disabled}
       disableElevation={disableElevation}
+      fullWidth={fullWidth}
       sx={sx}
       {...props}
     >

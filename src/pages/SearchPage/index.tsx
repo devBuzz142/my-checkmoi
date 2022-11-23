@@ -5,26 +5,15 @@ import useQueries from '../../hooks/useQueries';
 import { getNaverBooks } from '../../naver';
 import * as S from './style';
 import { BookCard } from '../../components';
+import { NaverBookType } from '../../types/book';
 
 interface SearchPageProps {}
-
-interface NaverBook {
-  author: string;
-  description: string;
-  discount: string;
-  image: string;
-  isbn: string;
-  link: string;
-  pubdate: string;
-  publisher: string;
-  title: string;
-}
 
 const SearchPage = ({ ...props }: SearchPageProps) => {
   const navigate = useNavigate();
   const { queries } = useQueries();
 
-  const [searchedBooks, setSearchedBooks] = useState<Array<NaverBook>>([]);
+  const [searchedBooks, setSearchedBooks] = useState<Array<NaverBookType>>([]);
   const [curPage, setCurPage] = useState(Number(queries.page));
   const total = useRef<number>(0);
 
@@ -63,7 +52,7 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
             bookImage={book.image}
             bookTitle={book.title}
             onClick={() => {
-              navigate(`/book?title=${book.title}`);
+              navigate(`/book?id=${book.isbn}`);
             }}
           />
         ))}

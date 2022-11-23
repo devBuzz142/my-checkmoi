@@ -9,3 +9,4 @@ export { default as Card } from './base/Card';
 
 export { default as TopBar } from './TopBar';
 export { default as BookCard } from './BookCard';
+export { default as BookDetailCard } from './BookDetailCard';

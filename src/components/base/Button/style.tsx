@@ -5,6 +5,7 @@ interface ButtonProps {
   variant: string;
   color: string;
   disableElevation: boolean;
+  fullWidth: boolean;
   disabled: boolean;
   sx: {
     flexDirection: string;
@@ -75,7 +76,7 @@ const getContainedButtonStyle = ({ ...props }) => css`
 `;
 
 export const Button = styled.button<ButtonProps>`
-  width: ${({ sx }) => getSxWidth(sx.width)};
+  width: ${({ fullWidth, sx }) => (fullWidth ? '100%' : getSxWidth(sx.width))};
   height: ${({ sx }) => getSxHeight(sx.height)};
 
   border-radius: 4px;
