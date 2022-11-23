@@ -3,6 +3,7 @@ import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 
 import theme from '../src/commons/style/theme';
 import GlobalStyle from '../src/commons/style/GlobalStyle';
+import { BrowserRouter } from 'react-router-dom';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -34,7 +35,9 @@ export const decorators = [
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Story {...context} />
+        <BrowserRouter>
+          <Story {...context} />
+        </BrowserRouter>
       </ThemeProvider>
     );
   },
