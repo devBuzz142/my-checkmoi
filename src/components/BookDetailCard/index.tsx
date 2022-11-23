@@ -8,6 +8,7 @@ interface BookDetailCardProps {
 }
 
 const BookDetailCard = ({ book = dummyNaverBook }: BookDetailCardProps) => {
+  console.log(book);
   return (
     <S.Container className="BookDetailCard">
       <S.LeftContainer>
@@ -20,12 +21,13 @@ const BookDetailCard = ({ book = dummyNaverBook }: BookDetailCardProps) => {
       </S.LeftContainer>
       <S.BookInfoContainer>
         <div>{book.title}</div>
-        <div>
-          {book.author} | {book.publisher}
-        </div>
+        <div>작가 : {book.author}</div>
+        <div>출판사 : {book.publisher}</div>
         <div>출판일자 : {book.pubdate}</div>
         <div>책소개</div>
-        <div>{book.description}</div>
+        <S.BookDescriptionWrapper>
+          {book.description || '-'}
+        </S.BookDescriptionWrapper>
       </S.BookInfoContainer>
     </S.Container>
   );
