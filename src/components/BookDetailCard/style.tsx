@@ -4,6 +4,8 @@ import Card from '../base/Card';
 export const Container = styled(Card)`
   display: flex;
   flex-direction: row;
+
+  background-color: white;
 `;
 
 export const LeftContainer = styled.div`

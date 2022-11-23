@@ -8,6 +8,8 @@ export const Container = styled(Card)`
 
   padding: 8px;
 
+  background-color: white;
+
   :hover {
     transform: scale(1.05);
   }
