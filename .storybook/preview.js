@@ -21,6 +21,9 @@ export const parameters = {
 export const decorators = [
   (Story, context) => {
     const { args } = context;
+    if (args.noProvider) {
+      return <Story {...context} />;
+    }
 
     if (args.mui) {
       return (
