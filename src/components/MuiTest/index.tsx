@@ -1,17 +1,13 @@
 import React from 'react';
-import { Card } from '@mui/material';
+import { Typography } from '@mui/material';
 
 interface MuiTestProps {}
 
 const MuiTest = ({ ...props }: MuiTestProps) => {
   return (
-    <Card>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
-      <div>hello</div>
-    </Card>
+    <Typography variant="body2" align="center">
+      hello
+    </Typography>
   );
 };
 
