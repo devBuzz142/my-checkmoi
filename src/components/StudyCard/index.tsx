@@ -11,8 +11,14 @@ const StudyCard = ({ ...props }: StudyCardProps) => {
         <img src={dummyStudy.thumbnail} alt={dummyStudy.name} />
       </S.ImageWrapper>
       <S.StudyInfoContainer>
-        <p>{dummyStudy.name}</p>
-        <p>{dummyStudy.description}</p>
+        <h4>{dummyStudy.name}</h4>
+        <p>모집 인원 : {dummyStudy.maxParticipant}</p>
+        <p>
+          모집 기간 : {dummyStudy.gatherStartDate} - {dummyStudy.gatherEndDate}
+        </p>
+        <p>
+          모집 기간 : {dummyStudy.studyStartDate} - {dummyStudy.studyEndDate}
+        </p>
       </S.StudyInfoContainer>
     </S.Container>
   );
