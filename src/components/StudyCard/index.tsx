@@ -1,12 +1,18 @@
 import React from 'react';
 import * as S from './style';
 import { StudyType, dummyStudy } from '../../types/study';
+import { useNavigate } from 'react-router-dom';
 
 interface StudyCardProps {}
 
 const StudyCard = ({ ...props }: StudyCardProps) => {
+  const navigate = useNavigate();
+
   return (
-    <S.Container className="StudyCard">
+    <S.Container
+      className="StudyCard"
+      onClick={() => navigate(`/study=${dummyStudy.id}`)}
+    >
       <S.ImageWrapper>
         <img src={dummyStudy.thumbnail} alt={dummyStudy.name} />
       </S.ImageWrapper>
