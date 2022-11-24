@@ -3,8 +3,8 @@ import useQueries from '../../hooks/useQueries';
 import { getNaverBooks } from '../../naver';
 import PageTemplate from '../PageTemplate';
 import { NaverBookType, dummyNaverBook } from '../../types/book';
-import { BookDetailCard, Card } from '../../components';
-import styled from '@emotion/styled';
+import { BookDetailCard, StudyCard } from '../../components';
+import * as S from './style';
 
 interface BookPageProps {}
 
@@ -28,7 +28,12 @@ const BookPage = ({ ...props }: BookPageProps) => {
   return (
     <PageTemplate pageName="BookPage">
       <BookDetailCard book={book} />
-      <div>BookStudies</div>
+      <S.Divider />
+      <S.StudyCardList>
+        <StudyCard />
+        <StudyCard />
+        <StudyCard />
+      </S.StudyCardList>
     </PageTemplate>
   );
 };
