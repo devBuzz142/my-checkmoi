@@ -11,7 +11,7 @@ const StudyCard = ({ ...props }: StudyCardProps) => {
   return (
     <S.Container
       className="StudyCard"
-      onClick={() => navigate(`/study=${dummyStudy.id}`)}
+      onClick={() => navigate(`/study?id=${dummyStudy.id}`)}
     >
       <S.ImageWrapper>
         <img src={dummyStudy.thumbnail} alt={dummyStudy.name} />
