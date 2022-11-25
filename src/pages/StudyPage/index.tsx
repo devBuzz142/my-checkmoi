@@ -11,8 +11,6 @@ const StudyPage = ({ ...props }: StudyPageProps) => {
   const [studyId, setStudyId] = useState(queries.id);
   const [studyDetail, setStudyDetail] = useState<StudyDetailType>();
 
-  console.log(queries);
-
   useEffect(() => {
     //TODO - get study from server by api
     // const getStudyDetail = async () => {};

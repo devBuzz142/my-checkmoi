@@ -36,7 +36,7 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
       });
 
       if (res?.items) setSearchedBooks(res.items);
-      if (!total.current) total.current = res?.total;
+      total.current = res?.total;
     };
 
     getBooks();

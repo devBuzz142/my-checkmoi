@@ -11,7 +11,6 @@ interface StudyDetailCardProps {
 const StudyDetailCard = ({
   studyDetail = dummyStudyDetail,
 }: StudyDetailCardProps) => {
-  console.log(studyDetail);
   return (
     <S.Container className="StudyDetailCard">
       <S.LeftContainer>
