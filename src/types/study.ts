@@ -1,3 +1,5 @@
+import { BookType, dummyBook } from './book';
+
 // 모집중 | 모집완료 | 스터디 진행 중 | 스터디 완료
 export type StudyStatusType =
   | 'recruiting'
@@ -31,5 +33,24 @@ export const dummyStudy: StudyType = {
   studyStartDate: '2022/12/01',
   studyEndDate: '2022/12/28',
   description: '이건 스터디에 대한 설명입니다.',
+  status: 'recruiting',
+};
+
+export interface StudyDetailType {
+  study: StudyType;
+  members: {
+    id: string;
+    // user: UserType;
+  }[];
+  book: BookType;
+  description: string;
+  status: StudyStatusType;
+}
+
+export const dummyStudyDetail: StudyDetailType = {
+  study: dummyStudy,
+  members: [{ id: '1' }, { id: '2' }],
+  book: dummyBook,
+  description: 'this is Dummy Study Detail data',
   status: 'recruiting',
 };
