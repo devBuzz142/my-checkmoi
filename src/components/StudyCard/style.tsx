@@ -28,5 +28,5 @@ export const StudyInfoContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  row-gap: 8px;
 `;

@@ -12,7 +12,6 @@ interface SearchPageProps {}
 const SearchPage = ({ ...props }: SearchPageProps) => {
   const navigate = useNavigate();
   const { queries } = useQueries();
-  const loc = useLocation();
 
   const [searchedBooks, setSearchedBooks] = useState<Array<NaverBookType>>([]);
   const [curPage, setCurPage] = useState(Number(queries.page));
