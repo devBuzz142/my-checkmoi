@@ -12,6 +12,7 @@ interface SearchPageProps {}
 const SearchPage = ({ ...props }: SearchPageProps) => {
   const navigate = useNavigate();
   const { queries } = useQueries();
+  const loc = useLocation();
 
   const [searchedBooks, setSearchedBooks] = useState<Array<NaverBookType>>([]);
   const [curPage, setCurPage] = useState(Number(queries.page));
@@ -44,7 +45,9 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
 
   return (
     <PageTemplate pageName="SearchPage">
-      <S.SearchWordWrapper>search word : {queries.word}</S.SearchWordWrapper>
+      <S.SearchWordWrapper>
+        search word : {decodeURI(queries.word)}
+      </S.SearchWordWrapper>
       <S.BookCardContainer className="BookCardContainer">
         {searchedBooks.map((book) => (
           <BookCard
