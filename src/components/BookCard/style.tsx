@@ -24,7 +24,11 @@ export const ImageWrapper = styled.div`
   align-items: center;
 `;
 
-export const TitleWrapper = styled.div`
+export const InfoContainer = styled.div`
+  padding-top: 8px;
+`;
+
+export const InfoWrapper = styled.div`
   width: 100%;
 
   white-space: nowrap;
@@ -34,5 +38,3 @@ export const TitleWrapper = styled.div`
 
   //TODO: hover하면 text 나머지 보이도록
 `;
-
-export const AuthorWrapper = styled.div``;

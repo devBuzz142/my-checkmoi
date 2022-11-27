@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useQueries from '../../hooks/useQueries';
-import { getNaverBooks } from '../../naver';
+import { getNaverBooks } from '../../apis/naver';
 import PageTemplate from '../PageTemplate';
 import { NaverBookType, dummyNaverBook } from '../../types/book';
 import { BookDetailCard, StudyCard } from '../../components';

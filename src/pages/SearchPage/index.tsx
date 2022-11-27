@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PageTemplate from '../PageTemplate';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useQueries from '../../hooks/useQueries';
-import { getNaverBooks } from '../../naver';
+import { getNaverBooks } from '../../apis/naver';
 import * as S from './style';
 import { BookCard } from '../../components';
 import { NaverBookType } from '../../types/book';
@@ -49,8 +49,7 @@ const SearchPage = ({ ...props }: SearchPageProps) => {
         {searchedBooks.map((book) => (
           <BookCard
             key={book.isbn}
-            bookImage={book.image}
-            bookTitle={book.title}
+            book={book}
             onClick={() => {
               navigate(`/book?id=${book.isbn}`);
             }}

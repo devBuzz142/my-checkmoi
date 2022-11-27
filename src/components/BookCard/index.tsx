@@ -1,25 +1,22 @@
 import React, { MouseEventHandler, ReactNode } from 'react';
+import { dummyNaverBook, NaverBookType } from '../../types/book';
 import * as S from './style';
 
 interface BookCardProps {
-  bookTitle: string;
-  bookImage: string;
+  book: NaverBookType;
   onClick?: MouseEventHandler<HTMLElement>;
 }
 
-const BookCard = ({
-  bookTitle = 'untitled',
-  bookImage = '',
-  onClick,
-}: BookCardProps) => {
+const BookCard = ({ book = dummyNaverBook, onClick }: BookCardProps) => {
   return (
     <S.Container className="BookCard" onClick={onClick}>
       <S.ImageWrapper>
-        <img src={bookImage} alt={bookTitle} />
+        <img src={book.image} alt={book.title} />
       </S.ImageWrapper>
-      <S.TitleWrapper className="BookCardTitleWrapper">
-        {bookTitle}
-      </S.TitleWrapper>
+      <S.InfoContainer>
+        <S.InfoWrapper>{book.title}</S.InfoWrapper>
+        <S.InfoWrapper>{book.author}</S.InfoWrapper>
+      </S.InfoContainer>
     </S.Container>
   );
 };
