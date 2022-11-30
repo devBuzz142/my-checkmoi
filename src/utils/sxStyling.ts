@@ -19,6 +19,9 @@ export interface SxTypes {
   borderRadius?: number | string;
 
   display?: 'inline' | 'block' | 'none';
+
+  color?: ThemeType;
+  bgColor?: ThemeType;
 }
 
 export const applySxStyling = (sx: SxTypes) => {
