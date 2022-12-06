@@ -76,6 +76,10 @@ export const Container = styled.div<ContainerProps>`
   p {
     padding-top: 4px;
   }
+
+  .TextField-InputWrapper:focus-within {
+    border-color: ${(props) => props.theme.color.primary[300]};
+  }
 `;
 
 interface InputWrapperProps {

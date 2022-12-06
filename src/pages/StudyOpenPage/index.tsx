@@ -11,7 +11,7 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
       <S.Container>
         <S.UpperContainer>
           <S.LeftContainer>
-            <TextField label="책 제목" variant="standard" fullWidth />
+            <TextField label="책 제목" variant="filled" fullWidth />
             <TextField label="스터디 이름" variant="standard" fullWidth />
             <TextField label="스터디 인원" variant="standard" fullWidth />
             <TextField
