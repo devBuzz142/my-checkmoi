@@ -77,8 +77,14 @@ export const Container = styled.div<ContainerProps>`
     padding-top: 4px;
   }
 
-  .TextField-InputWrapper:focus-within {
-    border-color: ${(props) => props.theme.color.primary[300]};
+  :focus-within {
+    label {
+      color: ${(props) => props.theme.color.primary[300]};
+    }
+
+    .TextField-InputWrapper {
+      border-color: ${(props) => props.theme.color.primary[300]};
+    }
   }
 `;
 
