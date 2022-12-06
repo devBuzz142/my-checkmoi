@@ -6,6 +6,8 @@ const GlobalStyle = () => {
     <Global
       styles={css`
         * {
+          position: relative;
+
           margin: 0;
           padding: 0;
 

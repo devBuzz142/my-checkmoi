@@ -1,7 +1,7 @@
-import React, { HTMLInputTypeAttribute, useRef } from 'react';
+import React, { HTMLInputTypeAttribute, RefObject, useRef } from 'react';
 import * as S from './style';
 
-interface InputBaseProps {
+export interface InputBaseProps {
   type?: HTMLInputTypeAttribute;
   id?: string;
   name?: string;
@@ -11,7 +11,7 @@ interface InputBaseProps {
   readonly?: boolean;
   required?: boolean;
   placeholder?: string;
-  inputRef?: React.RefObject<HTMLInputElement> | null;
+  inputRef?: React.RefObject<HTMLInputElement>;
   autoComplete?: boolean;
   autoFocus?: boolean;
   fullWidth?: boolean;
@@ -37,7 +37,7 @@ const InputBase = ({
   disabled = false,
   readonly = false,
   required = false,
-  inputRef = null,
+  inputRef,
   autoComplete = false,
   autoFocus = false,
   fullWidth = false,
