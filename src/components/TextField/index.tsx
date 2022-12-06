@@ -10,7 +10,7 @@ interface TextFieldProps extends InputBaseProps {
 }
 
 const TextField = ({ ...props }: TextFieldProps) => {
-  const { variant = 'standard', label, helperText } = props;
+  const { variant = 'standard', label, helperText, fullWidth = false } = props;
 
   // to pass the rules-of-hooks
   const tfInputRef = useRef<HTMLInputElement>(null);
@@ -25,8 +25,8 @@ const TextField = ({ ...props }: TextFieldProps) => {
   return (
     <S.Container variant={variant} onClick={onClickContainer}>
       {label && <label>{label}</label>}
-      <S.InputWrapper className="TextField-InputWrapper">
-        <InputBase {...props} inputRef={inputRef} />
+      <S.InputWrapper className="TextField-InputWrapper" fullWidth={fullWidth}>
+        <InputBase {...props} inputRef={inputRef} fullWidth />
       </S.InputWrapper>
       {helperText && <p>{helperText}</p>}
     </S.Container>

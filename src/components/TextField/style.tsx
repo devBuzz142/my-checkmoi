@@ -78,7 +78,11 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const InputWrapper = styled.div`
-  width: 220px;
+interface InputWrapperProps {
+  fullWidth: boolean;
+}
+
+export const InputWrapper = styled.div<InputWrapperProps>`
+  width: ${(props) => (props.fullWidth ? '100%' : '220px')};
   height: 56px;
 `;
