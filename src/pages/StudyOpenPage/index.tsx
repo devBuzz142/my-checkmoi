@@ -5,6 +5,7 @@ import { Button, TextField } from '../../components';
 import { StudyType } from '../../types/study';
 import { BookType, dummyBook } from '../../types/book';
 import useQueries from '../../hooks/useQueries';
+import { useNavigate } from 'react-router-dom';
 
 interface StudyOpenPageProps {}
 
@@ -23,6 +24,8 @@ const initStuyInfo: StudyType = {
 };
 
 const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
+  const navigate = useNavigate();
+
   const [book, setBook] = useState<BookType>();
   const [study, setStudy] = useState<StudyType>(initStuyInfo);
 
@@ -75,6 +78,7 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
     //TODO - setStudy
     //TODO - submit by api and get success or fail
     //TODO - routing
+    navigate(`/study?id=${study.id}`);
   };
 
   const handleBackClick = (e: MouseEvent<HTMLButtonElement>) => history.back();
