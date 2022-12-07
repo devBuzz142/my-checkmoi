@@ -94,5 +94,5 @@ interface InputWrapperProps {
 
 export const InputWrapper = styled.div<InputWrapperProps>`
   width: ${(props) => (props.fullWidth ? '100%' : '220px')};
-  height: 56px;
+  /* height: 56px; */
 `;

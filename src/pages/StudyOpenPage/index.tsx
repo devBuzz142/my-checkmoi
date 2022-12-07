@@ -98,7 +98,13 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
           {
             // textarea 필요
           }
-          <TextField label="스터디 내용" variant="outlined" fullWidth />
+          <TextField
+            label="스터디 내용"
+            variant="outlined"
+            multiline
+            rows={8}
+            fullWidth
+          />
           <Button variant="outlined" fullWidth>
             스터디 개설하기
           </Button>
