@@ -12,7 +12,7 @@ const BookDetailCard = ({ book = dummyNaverBook }: BookDetailCardProps) => {
   const navigate = useNavigate();
 
   const handleStudyOpenClick = (e: MouseEvent<HTMLButtonElement>) => {
-    navigate(`/open?id=${book.isbn}`);
+    navigate(`/open?isbn=${book.isbn}`);
   };
 
   return (
