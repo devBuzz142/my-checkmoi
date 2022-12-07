@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import PageTemplate from '../PageTemplate';
 import * as S from './style';
 import { Button, TextField } from '../../components';
@@ -69,6 +69,15 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
       });
     };
   };
+
+  const handleOpenClick = (e: MouseEvent<HTMLButtonElement>) => {
+    //TODO - error check
+    //TODO - setStudy
+    //TODO - submit by api and get success or fail
+    //TODO - routing
+  };
+
+  const handleBackClick = (e: MouseEvent<HTMLButtonElement>) => history.back();
 
   return (
     <PageTemplate contentCenter>
@@ -171,10 +180,10 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
             fullWidth
             onChange={handleInputChange}
           />
-          <Button variant="outlined" fullWidth>
+          <Button variant="outlined" fullWidth onClick={handleOpenClick}>
             스터디 개설하기
           </Button>
-          <Button variant="outlined" fullWidth>
+          <Button variant="outlined" fullWidth onClick={handleBackClick}>
             뒤로 가기
           </Button>
         </S.UnderContainer>
