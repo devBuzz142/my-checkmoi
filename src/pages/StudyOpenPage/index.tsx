@@ -1,14 +1,50 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import PageTemplate from '../PageTemplate';
 import * as S from './style';
 import { Button, TextField } from '../../components';
+import { StudyType } from '../../types/study';
+import { BookType, dummyBook } from '../../types/book';
+import useQueries from '../../hooks/useQueries';
 
 interface StudyOpenPageProps {}
 
+const initStuyInfo: StudyType = {
+  id: '',
+  name: '',
+  thumbnail: 'https://via.placeholder.com/300.png',
+  currentParticipant: 1,
+  maxParticipant: 10,
+  gatherStartDate: '',
+  gatherEndDate: '',
+  studyStartDate: '',
+  studyEndDate: '',
+  description: '',
+  status: 'recruiting',
+};
+
 const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
-  const [imageUrl, setImageUrl] = useState<string>(
-    'https://via.placeholder.com/300.png',
-  );
+  const [book, setBook] = useState<BookType>();
+  const [study, setStudy] = useState<StudyType>(initStuyInfo);
+
+  const { queries } = useQueries();
+  useEffect(() => {
+    // set book by book id
+    //TODO - 백 맏늘고 나중에 코드 다시 짜기
+    console.log(queries.id);
+
+    setBook(dummyBook);
+  }, [queries.id]);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const { name: inputName, value } = e.target;
+
+    setStudy({
+      ...study,
+      [inputName]: value,
+    });
+  };
 
   const handleFileUploadChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -27,7 +63,10 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
-      setImageUrl(reader.result as string);
+      setStudy({
+        ...study,
+        thumbnail: reader.result as string,
+      });
     };
   };
 
@@ -36,44 +75,68 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
       <S.Container>
         <S.UpperContainer>
           <S.LeftContainer>
-            <TextField label="책 제목" variant="filled" disabled fullWidth />
             <TextField
+              label="책 제목"
+              variant="filled"
+              value={book?.title}
+              disabled
+              fullWidth
+            />
+            <TextField
+              name="name"
               label="스터디 이름"
               variant="standard"
               type={'text'}
               fullWidth
+              onChange={handleInputChange}
             />
             <TextField
+              name="maxParticipant"
               label="스터디 인원"
               variant="standard"
               type={'number'}
               fullWidth
+              onChange={handleInputChange}
             />
             <TextField
+              name="gatherStartDate"
               label="스터디원 모집 시작"
               variant="standard"
               type={'date'}
               fullWidth
+              onChange={handleInputChange}
             />
             <TextField
+              name="gatherEndDate"
               label="스터디원 모집 마감"
               variant="standard"
               type={'date'}
               fullWidth
+              onChange={handleInputChange}
             />
             <TextField
+              name="studyStartDate"
               label="스터디 진행 시작"
               variant="standard"
               type={'date'}
               fullWidth
+              onChange={handleInputChange}
             />
             <TextField
+              name="studyEndDate"
               label="스터디 진행 종료"
               variant="standard"
               type={'date'}
               fullWidth
+              onChange={handleInputChange}
             />
-            <TextField label="스터디 모집 상태" variant="standard" fullWidth />
+            <TextField
+              name="status"
+              label="스터디 모집 상태"
+              variant="standard"
+              fullWidth
+              onChange={handleInputChange}
+            />
           </S.LeftContainer>
           <S.RightContainer>
             <form>
@@ -81,9 +144,10 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
               <br />
               <br />
               <S.ThumbnailBoxLabel htmlFor="study-open-file-input">
-                <img src={imageUrl} alt="스터디 썸네일" />
+                <img src={study.thumbnail} alt="스터디 썸네일" />
               </S.ThumbnailBoxLabel>
               <input
+                name="thumbnail"
                 id="study-open-file-input"
                 hidden
                 type={'file'}
@@ -99,11 +163,13 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
             // textarea 필요
           }
           <TextField
+            name="description"
             label="스터디 내용"
             variant="outlined"
             multiline
             rows={8}
             fullWidth
+            onChange={handleInputChange}
           />
           <Button variant="outlined" fullWidth>
             스터디 개설하기
