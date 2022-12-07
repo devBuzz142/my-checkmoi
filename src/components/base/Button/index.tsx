@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import * as S from './style';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.HtmlHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   variant?: 'text' | 'outlined' | 'contained';
   disabled?: boolean;

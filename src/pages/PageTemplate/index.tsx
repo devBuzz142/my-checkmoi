@@ -5,13 +5,20 @@ import { TopBar } from '../../components';
 interface PageTemplateProps {
   children?: ReactNode;
   pageName?: string;
+  contentCenter?: boolean;
 }
 
-const PageTemplate = ({ children, pageName }: PageTemplateProps) => {
+const PageTemplate = ({
+  children,
+  pageName,
+  contentCenter = false,
+}: PageTemplateProps) => {
   return (
     <S.PageContainer className={pageName ? pageName : ''}>
       <TopBar />
-      <S.ContentContainer>{children}</S.ContentContainer>
+      <S.ContentContainer contentCenter={contentCenter}>
+        {children}
+      </S.ContentContainer>
       {/* <footer /> */}
     </S.PageContainer>
   );

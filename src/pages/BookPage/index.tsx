@@ -10,20 +10,20 @@ interface BookPageProps {}
 
 const BookPage = ({ ...props }: BookPageProps) => {
   const { queries } = useQueries();
-  const [bookId, setBookId] = useState(queries.id);
+  const [bookIsbn, setBookIsbn] = useState(queries.isbn);
   const [book, setBook] = useState<NaverBookType>(dummyNaverBook);
 
   useEffect(() => {
     const getBookInfo = async () => {
       const res = await getNaverBooks({
-        query: bookId,
+        query: bookIsbn,
       });
 
       if (res?.items[0]) setBook(res.items[0]);
     };
 
     getBookInfo();
-  }, [queries.id]);
+  }, [queries.isbn]);
 
   return (
     <PageTemplate pageName="BookPage">

@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { NaverBookType, dummyNaverBook } from '../../types/book';
 import * as S from './style';
 import { Button } from '../index';
+import { useNavigate } from 'react-router-dom';
 
 interface BookDetailCardProps {
   book: NaverBookType;
 }
 
 const BookDetailCard = ({ book = dummyNaverBook }: BookDetailCardProps) => {
+  const navigate = useNavigate();
+
+  const handleStudyOpenClick = (e: MouseEvent<HTMLButtonElement>) => {
+    navigate(`/open?isbn=${book.isbn}`);
+  };
+
   return (
     <S.Container className="BookDetailCard">
       <S.LeftContainer>
         <S.ImageWrapper>
           <img src={book.image} alt={book.title} />
         </S.ImageWrapper>
-        <Button variant="contained" color="primary" fullWidth>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleStudyOpenClick}
+        >
           스터디 개설하기
         </Button>
       </S.LeftContainer>
