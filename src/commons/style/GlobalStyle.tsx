@@ -10,6 +10,7 @@ const GlobalStyle = () => {
 
           margin: 0;
           padding: 0;
+          border: nene;
 
           color: inherit;
 
@@ -69,6 +70,14 @@ const GlobalStyle = () => {
           &:disabled {
             cursor: not-allowed;
           }
+        }
+
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+
+          border: none;
         }
 
         input {
