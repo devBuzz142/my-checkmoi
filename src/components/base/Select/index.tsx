@@ -17,10 +17,19 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
   multiple?: boolean;
   variant?: 'filled' | 'outlined' | 'standard';
   native?: boolean;
+  sx?: {
+    width?: string | number;
+    height?: string | number;
+  };
 }
 
 const Select = ({ ...props }: SelectProps) => {
-  const { children, variant = 'standard', native = false } = props;
+  const {
+    children,
+    variant = 'standard',
+    native = false,
+    sx = { width: 240, height: 56 },
+  } = props;
 
   const options = React.Children.toArray(children)
     .filter((node) => (node as ReactElement)?.type === 'option')
@@ -67,7 +76,7 @@ const Select = ({ ...props }: SelectProps) => {
 
   if (native) {
     return (
-      <S.Conainer>
+      <S.Conainer width={sx.width || '100%'} height={sx.height || '56px'}>
         <S.NativeSelect variant={variant} onClick={handleSelectorClick}>
           {options.map((opt, idx) => (
             <option key={`.${idx}`} value={opt.children}>
@@ -80,7 +89,7 @@ const Select = ({ ...props }: SelectProps) => {
   }
 
   return (
-    <S.Conainer>
+    <S.Conainer width={sx.width || '100%'} height={sx.height || '56px'}>
       <S.StyledSelect variant={variant} onClick={handleSelectorClick}>
         {selected}
       </S.StyledSelect>

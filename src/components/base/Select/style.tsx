@@ -2,11 +2,17 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { propsToAttrMap } from '@vue/shared';
 
-interface SelectorProps {
-  variant: 'filled' | 'outlined' | 'standard';
+interface ContainerProps {
+  width: number | string;
+  height: number | string;
 }
 
-export const Conainer = styled.div`
+export const Conainer = styled.div<ContainerProps>`
+  width: ${(props) =>
+    typeof props.width === 'number' ? `${props.width}px` : props.width};
+  height: ${(props) =>
+    typeof props.height === 'number' ? `${props.height}px` : props.height};
+
   .visible {
     display: block;
   }
@@ -15,6 +21,10 @@ export const Conainer = styled.div`
     display: none;
   }
 `;
+
+interface SelectorProps {
+  variant: 'filled' | 'outlined' | 'standard';
+}
 
 const getFilledStyle = ({ ...props }) => css``;
 const getOutlinedStyle = ({ ...props }) => css``;
@@ -38,7 +48,7 @@ const getStandardStyle = ({ ...props }) => css`
 
 export const NativeSelect = styled.select<SelectorProps>`
   width: 100%;
-  height: 56px;
+  height: 100%;
 
   ${(props) => {
     switch (props.variant) {
@@ -56,7 +66,7 @@ export const NativeSelect = styled.select<SelectorProps>`
 
 export const StyledSelect = styled.div<SelectorProps>`
   width: 100%;
-  height: 56px;
+  height: 100%;
 
   ${(props) => {
     switch (props.variant) {
@@ -70,6 +80,9 @@ export const StyledSelect = styled.div<SelectorProps>`
   }}
 
   background-color: white;
+
+  display: flex;
+  align-items: center;
 `;
 
 interface OptinListProps {
