@@ -114,6 +114,12 @@ const GlobalStyle = () => {
         a {
           text-decoration: none;
         }
+
+        ol,
+        ul,
+        li {
+          list-style: none;
+        }
       `}
     />
   );
