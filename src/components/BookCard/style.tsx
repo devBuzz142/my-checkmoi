@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Card } from '../index';
+import Card from '../base/Card';
 
 export const Container = styled(Card)`
   width: 176px;

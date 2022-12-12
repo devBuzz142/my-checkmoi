@@ -26,7 +26,7 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
 const Select = ({ ...props }: SelectProps) => {
   const {
     children,
-    variant = 'standard',
+    variant = 'filled',
     native = false,
     sx = { width: 240, height: 56 },
   } = props;

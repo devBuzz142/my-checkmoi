@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { propsToAttrMap } from '@vue/shared';
 
 interface ContainerProps {
   width: number | string;
@@ -26,9 +25,27 @@ interface SelectorProps {
   variant: 'filled' | 'outlined' | 'standard';
 }
 
-const getFilledStyle = ({ ...props }) => css``;
-const getOutlinedStyle = ({ ...props }) => css``;
-const getStandardStyle = ({ ...props }) => css`
+const getFilledStyle = ({ ...props }) => css`
+  border-bottom: 2px solid ${props.theme.color.palette.grey[400]};
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+
+  padding: 16px 14px;
+
+  background-color: ${props.theme.color.palette.grey[200]};
+  color: ${props.theme.color.palette.grey[400]};
+
+  :hover:not(:focus-within) {
+    border-color: ${props.theme.color.palette.black};
+    color: ${props.theme.color.palette.black};
+  }
+
+  :focus-within {
+    border-color: ${props.theme.color.primary.dark};
+  }
+`;
+
+const getOutlinedStyle = ({ ...props }) => css`
   border: 2px solid ${props.theme.color.palette.grey[400]};
   border-radius: 4px;
 
@@ -46,40 +63,42 @@ const getStandardStyle = ({ ...props }) => css`
   }
 `;
 
+const getStandardStyle = ({ ...props }) => css``;
+
 export const NativeSelect = styled.select<SelectorProps>`
   width: 100%;
   height: 100%;
 
+  background-color: white;
+
   ${(props) => {
     switch (props.variant) {
       case 'filled':
-        return getStandardStyle(props);
+        return getFilledStyle(props);
       case 'outlined':
-        return getStandardStyle(props);
+        return getOutlinedStyle(props);
       case 'standard':
         return getStandardStyle(props);
     }
   }}
-
-  background-color: white;
 `;
 
 export const StyledSelect = styled.div<SelectorProps>`
   width: 100%;
   height: 100%;
 
+  background-color: white;
+
   ${(props) => {
     switch (props.variant) {
       case 'filled':
-        return getStandardStyle(props);
+        return getFilledStyle(props);
       case 'outlined':
-        return getStandardStyle(props);
+        return getOutlinedStyle(props);
       case 'standard':
         return getStandardStyle(props);
     }
   }}
-
-  background-color: white;
 
   display: flex;
   align-items: center;
