@@ -15,6 +15,7 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
   autoWidth?: boolean;
   defaultOpen?: boolean;
   multiple?: boolean;
+  label?: string;
   variant?: 'filled' | 'outlined' | 'standard';
   native?: boolean;
   sx?: {
@@ -26,8 +27,9 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
 const Select = ({ ...props }: SelectProps) => {
   const {
     children,
+    label = 'temp-label',
     variant = 'standard',
-    native = false,
+    native = true,
     sx = { width: 240 },
   } = props;
 
@@ -61,7 +63,6 @@ const Select = ({ ...props }: SelectProps) => {
 
   const handleSelectorClick = () => {
     if (!ulRef.current) return;
-    console.log('clicked');
 
     setIsOn(!isOn);
   };
@@ -78,9 +79,14 @@ const Select = ({ ...props }: SelectProps) => {
     return (
       <S.Conainer
         width={sx.width || '100%'}
-        height={sx.height || variant === 'standard' ? '32px' : '56px'}
+        height={sx.height || variant === 'standard' ? '48px' : '56px'}
       >
-        <S.NativeSelect variant={variant} onClick={handleSelectorClick}>
+        <S.SelectorLabel>{label}</S.SelectorLabel>
+        <S.NativeSelect
+          native={native}
+          variant={variant}
+          onClick={handleSelectorClick}
+        >
           {options.map((opt, idx) => (
             <option key={`.${idx}`} value={opt.children}>
               {opt.children}
@@ -96,6 +102,7 @@ const Select = ({ ...props }: SelectProps) => {
       width={sx.width || '100%'}
       height={sx.height || variant === 'standard' ? '48px' : '56px'}
     >
+      <S.SelectorLabel>{label}</S.SelectorLabel>
       <S.StyledSelect variant={variant} onClick={handleSelectorClick}>
         {selected}
       </S.StyledSelect>

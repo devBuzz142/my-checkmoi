@@ -19,10 +19,28 @@ export const Conainer = styled.div<ContainerProps>`
   .hidden {
     display: none;
   }
+
+  :hover:not(:focus-within) {
+    label {
+      color: ${(props) => props.theme.color.palette.black};
+    }
+  }
+`;
+
+export const SelectorLabel = styled.label`
+  z-index: 1;
+  position: absolute;
+
+  left: 14px;
+
+  font-size: 14px;
+
+  color: ${(props) => props.theme.color.palette.grey[400]};
 `;
 
 interface SelectorProps {
   variant: 'filled' | 'outlined' | 'standard';
+  native?: boolean;
 }
 
 const getFilledStyle = ({ ...props }) => css`
@@ -30,7 +48,7 @@ const getFilledStyle = ({ ...props }) => css`
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 
-  padding: 16px 14px;
+  padding: 24px 14px 8px 14px;
 
   background-color: ${props.theme.color.palette.grey[200]};
   color: ${props.theme.color.palette.grey[400]};
@@ -49,7 +67,7 @@ const getOutlinedStyle = ({ ...props }) => css`
   border: 2px solid ${props.theme.color.palette.grey[400]};
   border-radius: 4px;
 
-  padding: 16px 14px;
+  padding: 24px 14px 8px 14px;
 
   color: ${props.theme.color.palette.grey[400]};
 
@@ -66,7 +84,7 @@ const getOutlinedStyle = ({ ...props }) => css`
 const getStandardStyle = ({ ...props }) => css`
   border-bottom: 2px solid ${props.theme.color.palette.grey[400]};
 
-  padding: 16px 14px;
+  padding: ${props.native ? '18px 14px 8px 14px' : '24px 14px 8px 14px'};
 `;
 
 export const NativeSelect = styled.select<SelectorProps>`
@@ -103,9 +121,6 @@ export const StyledSelect = styled.div<SelectorProps>`
         return getStandardStyle(props);
     }
   }}
-
-  display: flex;
-  align-items: center;
 `;
 
 interface OptinListProps {
@@ -113,6 +128,7 @@ interface OptinListProps {
 }
 
 export const OptionList = styled.ul<OptinListProps>`
+  z-index: 10;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 

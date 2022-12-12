@@ -78,6 +78,7 @@ const GlobalStyle = () => {
           appearance: none;
 
           border: none;
+          border-radius: 0px;
         }
 
         input {
