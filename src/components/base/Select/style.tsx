@@ -63,7 +63,11 @@ const getOutlinedStyle = ({ ...props }) => css`
   }
 `;
 
-const getStandardStyle = ({ ...props }) => css``;
+const getStandardStyle = ({ ...props }) => css`
+  border-bottom: 2px solid ${props.theme.color.palette.grey[400]};
+
+  padding: 16px 14px;
+`;
 
 export const NativeSelect = styled.select<SelectorProps>`
   width: 100%;
@@ -120,7 +124,7 @@ export const OptionList = styled.ul<OptinListProps>`
     rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
 
   li {
-    height: 56px;
+    height: 48px;
 
     padding: 16px 14px;
 

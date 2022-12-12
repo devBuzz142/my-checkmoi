@@ -26,9 +26,9 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
 const Select = ({ ...props }: SelectProps) => {
   const {
     children,
-    variant = 'filled',
+    variant = 'standard',
     native = false,
-    sx = { width: 240, height: 56 },
+    sx = { width: 240 },
   } = props;
 
   const options = React.Children.toArray(children)
@@ -76,7 +76,10 @@ const Select = ({ ...props }: SelectProps) => {
 
   if (native) {
     return (
-      <S.Conainer width={sx.width || '100%'} height={sx.height || '56px'}>
+      <S.Conainer
+        width={sx.width || '100%'}
+        height={sx.height || variant === 'standard' ? '32px' : '56px'}
+      >
         <S.NativeSelect variant={variant} onClick={handleSelectorClick}>
           {options.map((opt, idx) => (
             <option key={`.${idx}`} value={opt.children}>
@@ -89,7 +92,10 @@ const Select = ({ ...props }: SelectProps) => {
   }
 
   return (
-    <S.Conainer width={sx.width || '100%'} height={sx.height || '56px'}>
+    <S.Conainer
+      width={sx.width || '100%'}
+      height={sx.height || variant === 'standard' ? '48px' : '56px'}
+    >
       <S.StyledSelect variant={variant} onClick={handleSelectorClick}>
         {selected}
       </S.StyledSelect>
