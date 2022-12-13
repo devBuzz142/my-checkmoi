@@ -1,7 +1,13 @@
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEvent,
+  useEffect,
+  useState,
+} from 'react';
 import PageTemplate from '../PageTemplate';
 import * as S from './style';
-import { Button, TextField } from '../../components';
+import { Button, Select, TextField } from '../../components';
 import { StudyType } from '../../types/study';
 import { BookType, dummyBook } from '../../types/book';
 import useQueries from '../../hooks/useQueries';
@@ -146,12 +152,18 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
               fullWidth
               onChange={handleInputChange}
             />
-            <select name="status" onChange={handleInputChange}>
+            <Select
+              name="status"
+              label="스터디 상태"
+              onChange={
+                handleInputChange as (e: ChangeEvent<HTMLSelectElement>) => void
+              }
+            >
               <option value={'recruiting'}>모집 중</option>
               <option value={'recruitingFinished'}>모집 완료</option>
               <option value={'inProgress'}>진행 중</option>
               <option value={'finished'}>완료</option>
-            </select>
+            </Select>
           </S.LeftContainer>
           <S.RightContainer>
             <form>
