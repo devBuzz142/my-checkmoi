@@ -1,17 +1,56 @@
 import React, {
+  ChangeEvent,
+  ChangeEventHandler,
   HTMLAttributes,
   MouseEvent,
   ReactElement,
   ReactNode,
+  RefObject,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import * as S from './style';
 
-interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
+const getUnNativeChangeEvent = (ref: RefObject<HTMLInputElement>) => {
+  if (!ref.current) throw new Error('unNativeRef is not assigned yed');
+
+  const changeEv: ChangeEvent<HTMLInputElement> = {
+    target: ref.current,
+    nativeEvent: new Event('change'),
+    currentTarget: ref.current,
+    bubbles: false,
+    cancelable: false,
+    defaultPrevented: false,
+    eventPhase: 0,
+    isTrusted: false,
+    preventDefault: function (): void {
+      this.defaultPrevented = true;
+    },
+    isDefaultPrevented: function (): boolean {
+      throw new Error('Function not implemented.');
+    },
+    stopPropagation: function (): void {
+      throw new Error('Function not implemented.');
+    },
+    isPropagationStopped: function (): boolean {
+      throw new Error('Function not implemented.');
+    },
+    persist: function (): void {
+      throw new Error('Function not implemented.');
+    },
+    timeStamp: 0,
+    type: 'change',
+  };
+
+  return changeEv;
+};
+
+interface SelectProps
+  extends Omit<HTMLAttributes<HTMLSelectElement>, 'onChange'> {
   children?: ReactNode;
   id?: string;
+  name?: string;
   autoWidth?: boolean;
   defaultOpen?: boolean;
   multiple?: boolean;
@@ -22,6 +61,7 @@ interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
     width?: string | number;
     height?: string | number;
   };
+  onChange?: ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
 }
 
 const Select = ({ ...props }: SelectProps) => {
@@ -29,7 +69,7 @@ const Select = ({ ...props }: SelectProps) => {
     children,
     label = 'temp-label',
     variant = 'standard',
-    native = true,
+    native = false,
     sx = { width: 240 },
   } = props;
 
@@ -37,12 +77,13 @@ const Select = ({ ...props }: SelectProps) => {
     .filter((node) => (node as ReactElement)?.type === 'option')
     .map((node) => (node as ReactElement).props);
 
-  const ulRef = useRef<HTMLUListElement>(null);
-
   const [selected, setSelected] = useState<string>(
     options[0].children as string,
   );
   const [isOn, setIsOn] = useState(false);
+
+  const ulRef = useRef<HTMLUListElement>(null);
+  const unNativeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleOptionListOn = () => {
@@ -68,11 +109,14 @@ const Select = ({ ...props }: SelectProps) => {
   };
 
   const handleOptionClick = (e: MouseEvent<HTMLUListElement>) => {
-    const li = e.target as HTMLLIElement;
+    handleSelectorClick();
 
+    const li = e.target as HTMLLIElement;
     setSelected(li.dataset.value as string);
 
-    handleSelectorClick();
+    if (unNativeRef.current && props.onChange) {
+      props.onChange(getUnNativeChangeEvent(unNativeRef));
+    }
   };
 
   if (native) {
@@ -83,9 +127,11 @@ const Select = ({ ...props }: SelectProps) => {
       >
         <S.SelectorLabel>{label}</S.SelectorLabel>
         <S.NativeSelect
+          name={props.name}
           native={native}
           variant={variant}
           onClick={handleSelectorClick}
+          onChange={props.onChange}
         >
           {options.map((opt, idx) => (
             <option key={`.${idx}`} value={opt.children}>
@@ -102,6 +148,7 @@ const Select = ({ ...props }: SelectProps) => {
       width={sx.width || '100%'}
       height={sx.height || variant === 'standard' ? '48px' : '56px'}
     >
+      <input hidden name={props.name} value={selected} ref={unNativeRef} />
       <S.SelectorLabel>{label}</S.SelectorLabel>
       <S.StyledSelect variant={variant} onClick={handleSelectorClick}>
         {selected}
