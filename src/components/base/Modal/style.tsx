@@ -9,6 +9,8 @@ interface BackgroundProps {
 
 export const Background = styled.div<BackgroundProps>`
   position: fixed;
+  top: 0px;
+  left: 0px;
   z-index: 1;
 
   width: 100%;

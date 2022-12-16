@@ -5,8 +5,7 @@ import Modal, { useModal } from '../base/Modal';
 interface LoginButtonProps {}
 
 const LoginButton = ({ ...props }: LoginButtonProps) => {
-  const { isModalOn, toggleModal, openModal, closeModal, modalRef } =
-    useModal();
+  const { isModalOn, toggleModal, closeModal, modalRef } = useModal();
 
   return (
     <>

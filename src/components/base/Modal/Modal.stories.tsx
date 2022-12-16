@@ -1,6 +1,5 @@
-import Modal from '.';
+import Modal, { useModal } from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { useState } from 'react';
 
 export default {
   title: 'Base/Modal',
@@ -9,18 +8,12 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = (args) => {
-  const [isModalOn, setIsModalOn] = useState(false);
+  const { isModalOn, modalRef, openModal } = useModal();
 
   return (
     <>
-      <button
-        onClick={() => {
-          setIsModalOn(!isModalOn);
-        }}
-      >
-        Modal
-      </button>
-      <Modal {...args} isModalOn={isModalOn}>
+      <button onClick={openModal}>Modal</button>
+      <Modal {...args} isModalOn={isModalOn} modalRef={modalRef}>
         <div> hello modal </div>
       </Modal>
     </>
