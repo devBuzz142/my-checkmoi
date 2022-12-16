@@ -49,20 +49,3 @@ export const Form = styled.form`
     width: 512px;
   }
 `;
-
-export const Button = styled.button`
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.color.primary.light};
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-
-  min-width: 64px;
-  padding: 6px 16px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-weight: 500;
-  font-size: 12px;
-`;

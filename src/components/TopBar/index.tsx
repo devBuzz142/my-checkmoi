@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent, useRef } from 'react';
 import * as S from './style';
-import { AppBar, Toolbar, Button, InputBase } from '../index';
+import { AppBar, Toolbar, Button, InputBase, LoginButton } from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
@@ -47,9 +47,7 @@ const TopBar = ({ ...props }: TopBarProps) => {
             <InputBase type={'text'} inputRef={serarchInputRef} fullWidth />
           </S.Form>
         </S.SearchInputContainer>
-        <Button variant="contained" color="primary">
-          Login
-        </Button>
+        <LoginButton />
       </Toolbar>
     </AppBar>
   );
