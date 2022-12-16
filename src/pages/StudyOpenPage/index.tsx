@@ -1,7 +1,13 @@
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  MouseEvent,
+  useEffect,
+  useState,
+} from 'react';
 import PageTemplate from '../PageTemplate';
 import * as S from './style';
-import { Button, TextField } from '../../components';
+import { Button, Select, TextField } from '../../components';
 import { StudyType } from '../../types/study';
 import { BookType, dummyBook } from '../../types/book';
 import useQueries from '../../hooks/useQueries';
@@ -38,7 +44,9 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
     setBook(dummyBook);
   }, [queries.id]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     e.preventDefault();
 
     const { name: inputName, value } = e.target;
@@ -83,6 +91,7 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
 
   const handleBackClick = (e: MouseEvent<HTMLButtonElement>) => history.back();
 
+  console.log(study);
   return (
     <PageTemplate contentCenter>
       <S.Container>
@@ -143,13 +152,18 @@ const StudyOpenPage = ({ ...props }: StudyOpenPageProps) => {
               fullWidth
               onChange={handleInputChange}
             />
-            <TextField
+            <Select
               name="status"
-              label="스터디 모집 상태"
-              variant="standard"
-              fullWidth
-              onChange={handleInputChange}
-            />
+              label="스터디 상태"
+              onChange={
+                handleInputChange as (e: ChangeEvent<HTMLSelectElement>) => void
+              }
+            >
+              <option value={'recruiting'}>모집 중</option>
+              <option value={'recruitingFinished'}>모집 완료</option>
+              <option value={'inProgress'}>진행 중</option>
+              <option value={'finished'}>완료</option>
+            </Select>
           </S.LeftContainer>
           <S.RightContainer>
             <form>

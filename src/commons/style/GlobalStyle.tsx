@@ -10,6 +10,7 @@ const GlobalStyle = () => {
 
           margin: 0;
           padding: 0;
+          border: nene;
 
           color: inherit;
 
@@ -71,6 +72,15 @@ const GlobalStyle = () => {
           }
         }
 
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+
+          border: none;
+          border-radius: 0px;
+        }
+
         input {
           -webkit-appearance: none;
           -moz-appearance: none;
@@ -104,6 +114,12 @@ const GlobalStyle = () => {
 
         a {
           text-decoration: none;
+        }
+
+        ol,
+        ul,
+        li {
+          list-style: none;
         }
       `}
     />
