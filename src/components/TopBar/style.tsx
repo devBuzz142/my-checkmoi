@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { InputBase } from '../index';
 
 export const LogoWrapper = styled.div`
   cursor: pointer;
@@ -48,4 +47,12 @@ export const Form = styled.form`
   &:focus-within {
     width: 512px;
   }
+`;
+
+export const TempUserAvatar = styled.img`
+  border: none;
+  border-radius: 50%;
+
+  width: 48px;
+  height: 48px;
 `;
