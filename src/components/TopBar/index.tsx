@@ -31,6 +31,8 @@ const TopBar = ({ ...props }: TopBarProps) => {
     //TODO - 로그인 구현 예정
   };
 
+  const handleAvatarClick = () => {};
+
   return (
     <AppBar color="primary" position="static">
       <Toolbar>
@@ -52,7 +54,11 @@ const TopBar = ({ ...props }: TopBarProps) => {
           </S.Form>
         </S.SearchInputContainer>
         {curUser ? (
-          <S.TempUserAvatar src={AVATAR_BUZZ} alt="user-profile-avatar" />
+          <S.TempUserAvatar
+            src={AVATAR_BUZZ}
+            alt="user-profile-avatar"
+            onClick={handleAvatarClick}
+          />
         ) : (
           <LoginButton />
         )}
