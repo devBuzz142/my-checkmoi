@@ -22,27 +22,34 @@ export const Background = styled.div<BackgroundProps>`
 `;
 
 interface ContainerProps {
-  menuTop?: number;
+  menuPos?: {
+    top: number;
+    left: number;
+  };
 }
 
 export const Container = styled.div<ContainerProps>`
+  width: 120px;
+
   border-bottom: 1px solid black;
   border-radius: 4px;
 
   background-color: white;
 
   ${(props) =>
-    props.menuTop &&
+    props.menuPos &&
     css`
-      top: ${props.menuTop}px;
+      top: ${props.menuPos.top}px;
+      left: ${props.menuPos.left}px;
     `}
+`;
 
-  div {
-    width: 120px;
-    padding: 4px;
+export const MenuItem = styled.div`
+  padding: 4px;
 
-    :hover {
-      background-color: ${(props) => props.theme.color.palette.grey[100]};
-    }
+  color: black;
+
+  :hover {
+    background-color: ${(props) => props.theme.color.palette.grey[100]};
   }
 `;

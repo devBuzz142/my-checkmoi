@@ -8,6 +8,7 @@ export { default as InputBase } from './base/InputBase';
 export { default as Card } from './base/Card';
 export { default as Select } from './base/Select';
 export { default as Modal } from './base/Modal';
+export { default as Menu } from './base/Menu';
 
 export { default as TopBar } from './TopBar';
 export { default as BookCard } from './BookCard';

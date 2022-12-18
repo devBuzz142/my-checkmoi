@@ -1,4 +1,3 @@
-import { node } from 'prop-types';
 import React, {
   ReactElement,
   ReactNode,
@@ -39,7 +38,7 @@ interface MenuItemProps {
 export const MenuItem = ({ ...props }: MenuItemProps) => {
   const { children } = props;
 
-  return <div className="menu-item">{children}</div>;
+  return <S.MenuItem className="menu-item">{children}</S.MenuItem>;
 };
 
 const typeMenuItem = (<MenuItem />).type;
@@ -54,7 +53,11 @@ interface MenuProps {
 const Menu = ({ ...props }: MenuProps) => {
   const { children, isMenuOn = false, backRef, parentRef } = props;
 
-  const [menuTop, setMenuTop] = useState<number>();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuPos, setMenuPos] = useState({
+    top: 0,
+    left: 0,
+  });
 
   const menuItemList = React.Children.toArray(children)
     .filter((node) => (node as ReactElement).type === typeMenuItem)
@@ -63,18 +66,27 @@ const Menu = ({ ...props }: MenuProps) => {
   useEffect(() => {
     const handleMenuPosition = () => {
       if (!parentRef?.current) return;
+      if (!menuRef?.current) return;
 
-      const { top, height } = parentRef.current.getClientRects()[0];
-      setMenuTop(top + height);
+      const menuRects = menuRef.current.getBoundingClientRect();
+      const parentRects = parentRef.current.getBoundingClientRect();
+
+      console.log(menuRects.width);
+
+      setMenuPos({
+        ...menuPos,
+        top: parentRects.top + parentRects.height,
+        left: parentRects.left + parentRects.width / 2 - menuRects.width / 2,
+      });
     };
 
     handleMenuPosition();
     return handleMenuPosition;
-  }, [parentRef?.current]);
+  }, [isMenuOn]);
 
   return (
     <S.Background className="menu-background" isMenuOn={isMenuOn} ref={backRef}>
-      <S.Container className="menu-content" menuTop={menuTop}>
+      <S.Container className="menu-content" menuPos={menuPos} ref={menuRef}>
         {menuItemList.map((children, idx) => (
           <MenuItem key={`.${idx}`}>{children}</MenuItem>
         ))}

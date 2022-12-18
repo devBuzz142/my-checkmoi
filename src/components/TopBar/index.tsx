@@ -1,10 +1,18 @@
-import React, { FormEvent, MouseEvent, useRef } from 'react';
+import React, { FormEvent, MouseEvent, RefObject, useRef } from 'react';
 import * as S from './style';
-import { AppBar, Toolbar, Button, InputBase, LoginButton } from '../index';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  InputBase,
+  LoginButton,
+  Menu,
+} from '../index';
 import LOGO_CHECKMOI from '../../assets/images/logo_checkmoi.png';
 import AVATAR_BUZZ from '../../assets/images/avatar_buzz.jpeg';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import { MenuItem, useMenu } from '../base/Menu';
 
 interface TopBarProps {}
 
@@ -14,6 +22,9 @@ const TopBar = ({ ...props }: TopBarProps) => {
 
   //TODO - 추후 user관련 타입, 더미데이터, context 추가 예정
   const curUser = true;
+
+  const { isMenuOn, openMenu, closeMenu, toggleMenu, backRef, parentRef } =
+    useMenu();
 
   const handleLogoTitleClick = (e: MouseEvent<HTMLDivElement>) => {
     navigate('/');
@@ -31,7 +42,9 @@ const TopBar = ({ ...props }: TopBarProps) => {
     //TODO - 로그인 구현 예정
   };
 
-  const handleAvatarClick = () => {};
+  const handleAvatarClick = () => {
+    toggleMenu();
+  };
 
   return (
     <AppBar color="primary" position="static">
@@ -54,11 +67,17 @@ const TopBar = ({ ...props }: TopBarProps) => {
           </S.Form>
         </S.SearchInputContainer>
         {curUser ? (
-          <S.TempUserAvatar
-            src={AVATAR_BUZZ}
-            alt="user-profile-avatar"
-            onClick={handleAvatarClick}
-          />
+          <>
+            <S.TempUserAvatar
+              src={AVATAR_BUZZ}
+              alt="user-profile-avatar"
+              onClick={handleAvatarClick}
+              ref={parentRef as RefObject<HTMLImageElement>}
+            />
+            <Menu isMenuOn={isMenuOn} backRef={backRef} parentRef={parentRef}>
+              <MenuItem>menu item</MenuItem>
+            </Menu>
+          </>
         ) : (
           <LoginButton />
         )}
