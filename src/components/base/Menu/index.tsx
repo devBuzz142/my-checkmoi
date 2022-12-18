@@ -1,4 +1,6 @@
+import { node } from 'prop-types';
 import React, {
+  ReactElement,
   ReactNode,
   RefObject,
   useEffect,
@@ -30,6 +32,18 @@ export const useMenu = (defaultOn = false) => {
   return { isMenuOn, toggleMenu, openMenu, closeMenu, backRef, parentRef };
 };
 
+interface MenuItemProps {
+  children?: ReactNode;
+}
+
+export const MenuItem = ({ ...props }: MenuItemProps) => {
+  const { children } = props;
+
+  return <div className="menu-item">{children}</div>;
+};
+
+const typeMenuItem = (<MenuItem />).type;
+
 interface MenuProps {
   children?: ReactNode;
   isMenuOn: boolean;
@@ -41,6 +55,10 @@ const Menu = ({ ...props }: MenuProps) => {
   const { children, isMenuOn = false, backRef, parentRef } = props;
 
   const [menuTop, setMenuTop] = useState<number>();
+
+  const menuItemList = React.Children.toArray(children)
+    .filter((node) => (node as ReactElement).type === typeMenuItem)
+    .map((node) => ((node as ReactElement).props as MenuItemProps).children);
 
   useEffect(() => {
     const handleMenuPosition = () => {
@@ -57,7 +75,9 @@ const Menu = ({ ...props }: MenuProps) => {
   return (
     <S.Background className="menu-background" isMenuOn={isMenuOn} ref={backRef}>
       <S.Container className="menu-content" menuTop={menuTop}>
-        {children}
+        {menuItemList.map((children, idx) => (
+          <MenuItem key={`.${idx}`}>{children}</MenuItem>
+        ))}
       </S.Container>
     </S.Background>
   );

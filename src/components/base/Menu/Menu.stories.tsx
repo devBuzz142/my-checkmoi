@@ -1,6 +1,6 @@
-import Menu, { useMenu } from '.';
+import Menu, { useMenu, MenuItem } from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 
 export default {
   title: 'Base/Menu',
@@ -32,6 +32,7 @@ const Template: ComponentStory<typeof Menu> = (args) => {
         backRef={backRef}
         parentRef={parentRef}
       >
+        <MenuItem>this is menuItem</MenuItem>
         <div>menu1</div>
         <div>menu2</div>
         <div>menu3</div>
