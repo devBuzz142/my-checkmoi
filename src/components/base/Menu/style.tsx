@@ -21,11 +21,21 @@ export const Background = styled.div<BackgroundProps>`
     `}
 `;
 
-export const Container = styled.div`
+interface ContainerProps {
+  menuTop?: number;
+}
+
+export const Container = styled.div<ContainerProps>`
   border-bottom: 1px solid black;
   border-radius: 4px;
 
   background-color: white;
+
+  ${(props) =>
+    props.menuTop &&
+    css`
+      top: ${props.menuTop}px;
+    `}
 
   div {
     width: 120px;

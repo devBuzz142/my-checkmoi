@@ -1,5 +1,6 @@
 import Menu, { useMenu } from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { RefObject } from 'react';
 
 export default {
   title: 'Base/Menu',
@@ -8,12 +9,29 @@ export default {
 } as ComponentMeta<typeof Menu>;
 
 const Template: ComponentStory<typeof Menu> = (args) => {
-  const { isMenuOn, openMenu, closeMenu, toggleMenu, backRef } = useMenu(true);
+  const { isMenuOn, openMenu, closeMenu, toggleMenu, backRef, parentRef } =
+    useMenu(false);
 
   return (
     <>
-      <button onClick={toggleMenu}>MENU</button>
-      <Menu {...args} isMenuOn={isMenuOn} backRef={backRef}>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <button
+        style={{ background: `red` }}
+        onClick={toggleMenu}
+        ref={parentRef as RefObject<HTMLButtonElement>}
+      >
+        MENU
+      </button>
+      <Menu
+        {...args}
+        isMenuOn={isMenuOn}
+        backRef={backRef}
+        parentRef={parentRef}
+      >
         <div>menu1</div>
         <div>menu2</div>
         <div>menu3</div>

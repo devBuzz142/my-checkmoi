@@ -27,7 +27,7 @@ export const useMenu = (defaultOn = false) => {
     return handleBackgroundClick;
   }, [backRef.current]);
 
-  return { isMenuOn, toggleMenu, openMenu, closeMenu, backRef };
+  return { isMenuOn, toggleMenu, openMenu, closeMenu, backRef, parentRef };
 };
 
 interface MenuProps {
@@ -40,9 +40,25 @@ interface MenuProps {
 const Menu = ({ ...props }: MenuProps) => {
   const { children, isMenuOn = false, backRef, parentRef } = props;
 
+  const [menuTop, setMenuTop] = useState<number>();
+
+  useEffect(() => {
+    const handleMenuPosition = () => {
+      if (!parentRef?.current) return;
+
+      const { top, height } = parentRef.current.getClientRects()[0];
+      setMenuTop(top + height);
+    };
+
+    handleMenuPosition();
+    return handleMenuPosition;
+  }, [parentRef?.current]);
+
   return (
     <S.Background className="menu-background" isMenuOn={isMenuOn} ref={backRef}>
-      <S.Container className="menu-content">{children}</S.Container>
+      <S.Container className="menu-content" menuTop={menuTop}>
+        {children}
+      </S.Container>
     </S.Background>
   );
 };
