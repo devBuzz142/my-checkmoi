@@ -1,3 +1,4 @@
+import { width } from '@mui/system';
 import React, {
   ReactElement,
   ReactNode,
@@ -6,6 +7,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import {
+  getElemIntoInnerWindow,
+  getElemTopIntoInnerWindow,
+} from '../../../utils/getElemIntoInnerWindow';
 import * as S from './style';
 
 export const useMenu = (defaultOn = false) => {
@@ -71,24 +76,17 @@ const Menu = ({ ...props }: MenuProps) => {
       const menuRects = menuRef.current.getBoundingClientRect();
       const parentRects = parentRef.current.getBoundingClientRect();
 
-      const menuTop = parentRects.top + parentRects.height;
-      const menuLeft =
-        parentRects.left + parentRects.width / 2 - menuRects.width / 2;
+      const [menuLeft, menuTop] = getElemIntoInnerWindow(
+        parentRects.left + parentRects.width / 2 - menuRects.width / 2,
+        menuRects.width,
+        parentRects.top + parentRects.height,
+        menuRects.height,
+      );
 
       setMenuPos({
         ...menuPos,
-        top:
-          menuTop < 0
-            ? 0
-            : menuTop + menuRects.height <= window.innerHeight
-            ? menuTop
-            : window.innerHeight - menuRects.height,
-        left:
-          menuLeft < 0
-            ? 0
-            : menuLeft + menuRects.width <= window.innerWidth
-            ? menuLeft
-            : window.innerWidth - menuRects.width,
+        top: menuTop,
+        left: menuLeft,
       });
     };
 
