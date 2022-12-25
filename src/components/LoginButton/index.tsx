@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from '../base/Button';
 import Modal, { useModal } from '../base/Modal';
+import * as S from './style';
+import { KAKAO_LOGIN_BUTTON } from '../../assets';
 
 interface LoginButtonProps {}
 
@@ -12,9 +14,25 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
       <Button variant="contained" color="primary" onClick={toggleModal}>
         Login
       </Button>
-      <Modal isModalOn={isModalOn} modalRef={modalRef}>
-        카카오 로그인
-        <Button onClick={closeModal}>로그인</Button>
+      <Modal isModalOn={true} modalRef={modalRef}>
+        <S.Container>
+          로그인 및 회원가입
+          <br />
+          <br />
+          <br />
+          <br />
+          <Button onClick={closeModal} disableElevation>
+            <img
+              src={KAKAO_LOGIN_BUTTON}
+              alt="kakao-login-button"
+              width={'160px'}
+            />
+          </Button>
+          <br />
+          <Button onClick={closeModal} disableElevation>
+            네이버 로그인
+          </Button>
+        </S.Container>
       </Modal>
     </>
   );
