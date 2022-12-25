@@ -21,17 +21,17 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
           <br />
           <br />
           <br />
-          <Button onClick={closeModal} disableElevation>
+          <S.LoginButton onClick={closeModal} disableElevation>
             <img
               src={KAKAO_LOGIN_BUTTON}
               alt="kakao-login-button"
               width={'160px'}
             />
-          </Button>
+          </S.LoginButton>
           <br />
-          <Button onClick={closeModal} disableElevation>
+          <S.LoginButton onClick={closeModal} disableElevation>
             네이버 로그인
-          </Button>
+          </S.LoginButton>
         </S.Container>
       </Modal>
     </>
