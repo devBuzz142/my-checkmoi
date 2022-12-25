@@ -1,5 +1,5 @@
-import { width } from '@mui/system';
 import React, {
+  HtmlHTMLAttributes,
   ReactElement,
   ReactNode,
   RefObject,
@@ -7,10 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  getElemIntoInnerWindow,
-  getElemTopIntoInnerWindow,
-} from '../../../utils/getElemIntoInnerWindow';
+import { getElemIntoInnerWindow } from '../../../utils/getElemIntoInnerWindow';
 import * as S from './style';
 
 export const useMenu = (defaultOn = false) => {
@@ -36,14 +33,18 @@ export const useMenu = (defaultOn = false) => {
   return { isMenuOn, toggleMenu, openMenu, closeMenu, backRef, parentRef };
 };
 
-interface MenuItemProps {
+interface MenuItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
 export const MenuItem = ({ ...props }: MenuItemProps) => {
   const { children } = props;
 
-  return <S.MenuItem className="menu-item">{children}</S.MenuItem>;
+  return (
+    <S.MenuItem className="menu-item" {...props}>
+      {children}
+    </S.MenuItem>
+  );
 };
 
 const typeMenuItem = (<MenuItem />).type;
@@ -66,7 +67,7 @@ const Menu = ({ ...props }: MenuProps) => {
 
   const menuItemList = React.Children.toArray(children)
     .filter((node) => (node as ReactElement).type === typeMenuItem)
-    .map((node) => ((node as ReactElement).props as MenuItemProps).children);
+    .map((node) => (node as ReactElement).props as MenuItemProps);
 
   useEffect(() => {
     const handleMenuPosition = () => {
@@ -97,8 +98,10 @@ const Menu = ({ ...props }: MenuProps) => {
   return (
     <S.Background className="menu-background" isMenuOn={isMenuOn} ref={backRef}>
       <S.Container className="menu-content" menuPos={menuPos} ref={menuRef}>
-        {menuItemList.map((children, idx) => (
-          <MenuItem key={`.${idx}`}>{children}</MenuItem>
+        {menuItemList.map((props, idx) => (
+          <MenuItem key={`.${idx}`} {...props}>
+            {props.children}
+          </MenuItem>
         ))}
       </S.Container>
     </S.Background>

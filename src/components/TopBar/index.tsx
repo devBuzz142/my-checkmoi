@@ -75,7 +75,11 @@ const TopBar = ({ ...props }: TopBarProps) => {
               ref={parentRef as RefObject<HTMLImageElement>}
             />
             <Menu isMenuOn={isMenuOn} backRef={backRef} parentRef={parentRef}>
-              <MenuItem>menu item</MenuItem>
+              <MenuItem>My Account</MenuItem>
+              <MenuItem>Study 1</MenuItem>
+              <MenuItem>Study 2</MenuItem>
+              <MenuItem>Study 3</MenuItem>
+              <MenuItem>Study 4</MenuItem>
             </Menu>
           </>
         ) : (
