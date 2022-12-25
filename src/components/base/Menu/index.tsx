@@ -1,3 +1,4 @@
+import { getEventListeners } from 'events';
 import React, {
   HtmlHTMLAttributes,
   ReactElement,
@@ -10,7 +11,7 @@ import React, {
 import { getElemIntoInnerWindow } from '../../../utils/getElemIntoInnerWindow';
 import * as S from './style';
 
-export const useMenu = (defaultOn = false) => {
+export const useMenu = (defaultOn = false, offByEsc = true) => {
   const [isMenuOn, setIsMenuOn] = useState(defaultOn);
   const backRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLElement>(null);
@@ -29,6 +30,23 @@ export const useMenu = (defaultOn = false) => {
     handleBackgroundClick();
     return handleBackgroundClick;
   }, [backRef.current]);
+
+  // handling on/off by 'esc'
+  useEffect(() => {
+    if (!offByEsc) return;
+
+    const handleEsc = (e: KeyboardEvent) => {
+      if (!isMenuOn) return;
+      if (e.key !== 'Escape') return;
+      e.preventDefault();
+
+      closeMenu();
+    };
+
+    window.addEventListener('keydown', handleEsc);
+
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isMenuOn]);
 
   return { isMenuOn, toggleMenu, openMenu, closeMenu, backRef, parentRef };
 };
@@ -69,6 +87,7 @@ const Menu = ({ ...props }: MenuProps) => {
     .filter((node) => (node as ReactElement).type === typeMenuItem)
     .map((node) => (node as ReactElement).props as MenuItemProps);
 
+  // handling menu position
   useEffect(() => {
     const handleMenuPosition = () => {
       if (!parentRef?.current) return;
