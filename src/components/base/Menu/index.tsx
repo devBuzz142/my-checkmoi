@@ -71,12 +71,24 @@ const Menu = ({ ...props }: MenuProps) => {
       const menuRects = menuRef.current.getBoundingClientRect();
       const parentRects = parentRef.current.getBoundingClientRect();
 
-      console.log(menuRects.width);
+      const menuTop = parentRects.top + parentRects.height;
+      const menuLeft =
+        parentRects.left + parentRects.width / 2 - menuRects.width / 2;
 
       setMenuPos({
         ...menuPos,
-        top: parentRects.top + parentRects.height,
-        left: parentRects.left + parentRects.width / 2 - menuRects.width / 2,
+        top:
+          menuTop < 0
+            ? 0
+            : menuTop + menuRects.height <= window.innerHeight
+            ? menuTop
+            : window.innerHeight - menuRects.height,
+        left:
+          menuLeft < 0
+            ? 0
+            : menuLeft + menuRects.width <= window.innerWidth
+            ? menuLeft
+            : window.innerWidth - menuRects.width,
       });
     };
 

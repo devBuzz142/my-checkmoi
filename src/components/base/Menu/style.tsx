@@ -29,12 +29,22 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: 120px;
+  width: 140px;
 
   border-bottom: 1px solid black;
   border-radius: 4px;
 
   background-color: white;
+
+  :first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  :last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 
   ${(props) =>
     props.menuPos &&
