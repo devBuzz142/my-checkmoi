@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../base/Button';
 import Modal, { useModal } from '../base/Modal';
 import * as S from './style';
-import { KAKAO_LOGIN_BUTTON } from '../../assets';
+import { KAKAO_LOGIN_BUTTON, NAVER_LOGIN_BUTTON } from '../../assets';
 
 interface LoginButtonProps {}
 
@@ -14,10 +14,9 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
       <Button variant="contained" color="primary" onClick={toggleModal}>
         Login
       </Button>
-      <Modal isModalOn={true} modalRef={modalRef}>
+      <Modal isModalOn={isModalOn} modalRef={modalRef}>
         <S.Container>
           로그인 및 회원가입
-          <br />
           <br />
           <br />
           <br />
@@ -30,7 +29,11 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
           </S.LoginButton>
           <br />
           <S.LoginButton onClick={closeModal} disableElevation>
-            네이버 로그인
+            <img
+              src={NAVER_LOGIN_BUTTON}
+              alt="naver-login-button"
+              width={'160px'}
+            />
           </S.LoginButton>
         </S.Container>
       </Modal>
