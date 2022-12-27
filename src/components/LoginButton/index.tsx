@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, MouseEventHandler, useState } from 'react';
 import Button from '../base/Button';
 import Modal, { useModal } from '../base/Modal';
 import * as S from './style';
 import { KAKAO_LOGIN_BUTTON, NAVER_LOGIN_BUTTON } from '../../assets';
 
-interface LoginButtonProps {}
+interface LoginButtonProps {
+  tempOnClick?: MouseEventHandler;
+}
 
 const LoginButton = ({ ...props }: LoginButtonProps) => {
   const { isModalOn, toggleModal, closeModal, modalRef } = useModal();
+
+  const tempHandleLoginClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (!props.tempOnClick) return;
+
+    props.tempOnClick(e);
+
+    closeModal();
+  };
 
   return (
     <>
@@ -20,7 +30,7 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
           <br />
           <br />
           <br />
-          <S.LoginButton onClick={closeModal} disableElevation>
+          <S.LoginButton onClick={tempHandleLoginClick} disableElevation>
             <img
               src={KAKAO_LOGIN_BUTTON}
               alt="kakao-login-button"
@@ -28,7 +38,7 @@ const LoginButton = ({ ...props }: LoginButtonProps) => {
             />
           </S.LoginButton>
           <br />
-          <S.LoginButton onClick={closeModal} disableElevation>
+          <S.LoginButton onClick={tempHandleLoginClick} disableElevation>
             <img
               src={NAVER_LOGIN_BUTTON}
               alt="naver-login-button"
